@@ -4,6 +4,9 @@
       <NuxtLink to="/">
         Home
       </NuxtLink>
+      <NuxtLink to="/mit-id-status">
+        MitID status
+      </NuxtLink>
     </nav>
   </header>
   <div>
