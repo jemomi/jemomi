@@ -1,6 +1,6 @@
 <template>
-  <header>
-    <nav>
+  <header class="bg-zinc-900">
+    <nav class="container mx-auto">
       <NuxtLink to="/">
         Home
       </NuxtLink>
@@ -10,7 +10,6 @@
     </nav>
   </header>
   <div>
-    <h1>Welcome</h1>
     <NuxtRouteAnnouncer />
     <NuxtPage />
   </div>
