@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container mx-auto">
     <h1>
       This page will show current status from MitID / SignaturGruppen
     </h1>
