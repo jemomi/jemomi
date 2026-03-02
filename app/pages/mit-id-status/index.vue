@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto">
     <h1>
-      This page will show current status from MitID / SignaturGruppen
+      This page will show a list of incident status' from mit-id
     </h1>
     <p v-if="pending">
       pending...
@@ -10,10 +10,15 @@
       <li
         v-for="statusLine in data"
         :key="`status-${statusLine.id}`"
-        class="grid grid-cols-7"
+        class="grid grid-cols-7 odd:bg-zinc-700"
       >
         <p>
-          {{ statusLine.id }}
+          <NuxtLink
+            :to="`/mit-id-status/${statusLine.id}`"
+            class="underline underline-offset-2 hover:no-underline"
+          >
+            See more for: {{ statusLine.id }}
+          </NuxtLink>
         </p>
         <p>
           {{ new Date(statusLine.received_at).toLocaleString() }}
@@ -29,7 +34,10 @@
         </pre>
       </li>
     </ul>
-    <pre v-if="error" v-html="error" />
+    <pre
+      v-if="error"
+      v-html="error"
+    />
   </div>
 </template>
 
