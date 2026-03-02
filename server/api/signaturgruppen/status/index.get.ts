@@ -5,11 +5,9 @@ export default defineCachedEventHandler(async (): Promise<Status[]> => {
     const dbUrl = process.env.DATABASE_URL;
 
     const sql = neon(dbUrl!);
-    const result = await sql`
+    return await sql`
         select * from public.signatur_events
     ` as Status[];
-
-    return result
 }, {
     maxAge: 1000 * 60 * 60, // 1 hour cache
     swr: true
