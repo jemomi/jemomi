@@ -1,5 +1,5 @@
 export interface Status {
-    id: string;
+    id: number;
     received_at: Date;
     event_type: string;
     payload: Record<string, string>;
