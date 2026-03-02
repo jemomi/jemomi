@@ -23,9 +23,9 @@ export default defineEventHandler(async (event) => {
 
     const sql = neon(dbUrl);
     await sql`
-    insert into signatur_events (event_type, payload, headers)
-    values (${eventType}, ${payload}, ${headers})
-  `;
+        insert into signatur_events (event_type, payload, headers)
+        values (${eventType}, ${payload}, ${headers})
+    `;
 
     return {
         statusCode: 200,
