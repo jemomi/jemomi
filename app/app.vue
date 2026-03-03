@@ -17,7 +17,20 @@
         </NuxtLink>
       </nav>
       <div class="flex justify-end gap-8">
-        <!--Space for right content in header-->
+        <div
+          v-if="loggedIn && user"
+          class="flex items-center gap-4"
+        >
+          <p>
+            Hello {{ user.name }}
+          </p>
+          <button
+            class="p-2 rounded-sm bg-blue-700 hover:bg-blue-900"
+            @click="clear"
+          >
+            SignOut
+          </button>
+        </div>
       </div>
     </div>
   </header>
@@ -43,6 +56,8 @@
 <script setup lang="ts">
 
 import type { DBVersion } from '#shared/types/dbVersion';
+
+const { loggedIn, user, clear } = useUserSession()
 
 const dbVer = await useFetch<DBVersion>('/api/version');
 
