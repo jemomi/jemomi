@@ -1,10 +1,11 @@
 import { neon } from '@neondatabase/serverless';
 import type {Status} from '#shared/types/signaturGruppen';
+import {getDatabaseUrl} from '#server/utils/database';
 
 export default defineCachedEventHandler(async (): Promise<Status[]> => {
-    const dbUrl = process.env.DATABASE_URL;
+    const databaseUrl = getDatabaseUrl()
 
-    const sql = neon(dbUrl!);
+    const sql = neon(databaseUrl);
     return await sql`
         select * from public.signatur_events
     ` as Status[];

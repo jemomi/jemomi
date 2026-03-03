@@ -1,5 +1,6 @@
 import { neon } from '@neondatabase/serverless';
 import type {Status} from '#shared/types/signaturGruppen';
+import {getDatabaseUrl} from '#server/utils/database';
 
 export default defineCachedEventHandler<Promise<Status>>(async (event) => {
     const requestedId = getRouterParam(event, 'id');
@@ -18,9 +19,9 @@ export default defineCachedEventHandler<Promise<Status>>(async (event) => {
         })
     }
 
-    const dbUrl = process.env.DATABASE_URL;
+    const databaseUrl = getDatabaseUrl()
 
-    const sql = neon(dbUrl!);
+    const sql = neon(databaseUrl);
 
     const result = await sql`
         select *

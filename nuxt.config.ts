@@ -10,5 +10,9 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss'
   ],
 
-  css: ['~/assets/css/main.css'],
+    css: ['~/assets/css/main.css'],
+
+    runtimeConfig: {
+        databaseUrl: process.env.DATABASE_URL
+    }
 })

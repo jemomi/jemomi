@@ -1,10 +1,8 @@
 import { neon } from '@neondatabase/serverless';
+import {getDatabaseUrl} from '#server/utils/database';
 
 export default defineEventHandler(async (event) => {
-    const dbUrl = process.env.DATABASE_URL;
-    if (!dbUrl) {
-        throw createError({statusCode: 500, statusMessage: "Missing DATABASE_URL"});
-    }
+    const databaseUrl = getDatabaseUrl()
 
     const raw = await readRawBody(event);
     if (!raw) {
@@ -21,7 +19,7 @@ export default defineEventHandler(async (event) => {
     const eventType = payload?.meta?.event_type ?? payload?.event_type ?? null;
     const headers = getHeaders(event);
 
-    const sql = neon(dbUrl);
+    const sql = neon(databaseUrl);
     await sql`
         insert into signatur_events (event_type, payload, headers)
         values (${eventType}, ${payload}, ${headers})
