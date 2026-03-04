@@ -3,6 +3,11 @@
     <h1>
       This page will show a list of incident status' from mit-id
     </h1>
+    <p class="pb-8">
+      Whenever an incident is reported from SignaturGruppen, I use their own "Subscribe to updates" feature, having given them a webhook they can post to.
+      <br>
+      Then the incident is saved to a database, and listed below.
+    </p>
     <p v-if="pending">
       pending...
     </p>
