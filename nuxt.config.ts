@@ -20,6 +20,7 @@ export default defineNuxtConfig({
                 clientSecret: process.env.NUXT_OAUTH_GITHUB_CLIENT_SECRET
             }
         },
-        databaseUrl: process.env.DATABASE_URL
+        databaseUrl: process.env.DATABASE_URL,
+        discordNotificationBotUrl: process.env.DISCORD_NOTIFICATION_BOT_URL,
     }
 })
