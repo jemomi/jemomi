@@ -37,7 +37,7 @@
   <main class="my-10">
     <NuxtPage/>
   </main>
-  <Footer/>
+  <AppFooter/>
 </template>
 
 <script setup lang="ts">
