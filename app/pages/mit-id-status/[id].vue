@@ -1,44 +1,55 @@
 <template>
-  <div class="container mx-auto">
+  <div
+    v-if="data"
+    class="container mx-auto"
+  >
     <h1>
-      This page will show current status from MitID / SignaturGruppen
+      {{ data.id }}
     </h1>
-    <p v-if="pending">
-      pending...
+    <p class="text-xs">
+      {{ new Date(data.received_at).toLocaleString() }}
     </p>
-    <ul v-if="data">
-      <li class="grid grid-cols-7">
-        <p>
-          {{ data.id }}
-        </p>
-        <p>
-          {{ new Date(data.received_at).toLocaleString() }}
-        </p>
-        <p>
-          {{ data.event_type }}
-        </p>
-        <pre class="col-span-2">
-          {{ data.payload }}
+    <p>
+      {{ data.event_type }}
+    </p>
+    <div v-if="loggedIn">
+      <div>
+        <h2>
+          payload
+        </h2>
+        <pre>
+            {{ data.payload }}
         </pre>
-        <pre class="col-span-2">
+      </div>
+      <div>
+        <h2>
+          headers
+        </h2>
+        <pre class="overflow-x-auto">
           {{ data.headers }}
         </pre>
-      </li>
-    </ul>
-    <pre
-      v-if="error"
-      v-html="error"
-    />
+      </div>
+    </div>
+  </div>
+  <div
+    v-else-if="error"
+    class="container mx-auto"
+  >
+    <h1 class="text-red-700">
+      Error: {{ error.status }} - {{ error.statusMessage }}
+    </h1>
+    <p>
+      {{ error.message }}
+    </p>
   </div>
 </template>
 
 <script setup lang="ts">
-
-
 const route = useRoute()
 
 const pageId = String(route.params.id)
 
-const {data, error, pending} = await useFetch(`/api/signaturgruppen/status/${pageId}`);
-console.log(0, data, error)
+const {data, error} = await useFetch(`/api/signaturgruppen/status/${pageId}`);
+
+const {loggedIn} = useUserSession()
 </script>
