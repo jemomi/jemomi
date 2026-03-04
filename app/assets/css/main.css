@@ -1,3 +1,15 @@
 body {
   @apply dark:text-white dark:bg-zinc-800;
 }
+
+h1 {
+  @apply text-2xl font-bold leading-loose;
+}
+
+h2 {
+  @apply text-xl font-bold leading-loose;
+}
+
+h3 {
+  @apply text-lg leading-relaxed;
+}
