@@ -1,5 +1,5 @@
 <template>
-  <NuxtRouteAnnouncer />
+  <NuxtRouteAnnouncer/>
   <header class="bg-zinc-900">
     <div class="flex container mx-auto justify-between py-2">
       <nav class="flex gap-8">
@@ -35,30 +35,11 @@
     </div>
   </header>
   <main class="my-10">
-    <NuxtPage />
+    <NuxtPage/>
   </main>
-  <footer class="bg-zinc-700 py-10">
-    <div class="container mx-auto">
-      <ul class="flex flex-col gap-4 text-zinc-400">
-        <li>
-          <p v-if="dbVer.data && dbVer.data.value">
-            DB-ver: {{ dbVer.data.value.version }}
-          </p>
-          <p v-if="dbVer.error">
-            {{ dbVer.error }}
-          </p>
-        </li>
-      </ul>
-    </div>
-  </footer>
+  <Footer/>
 </template>
 
 <script setup lang="ts">
-
-import type { DBVersion } from '#shared/types/dbVersion';
-
-const { loggedIn, user, clear } = useUserSession()
-
-const dbVer = await useFetch<DBVersion>('/api/version');
-
+const {loggedIn, user, clear} = useUserSession()
 </script>
