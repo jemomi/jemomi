@@ -26,12 +26,6 @@
         <p>
           {{ statusLine.event_type }}
         </p>
-        <pre class="col-span-2">
-          {{ statusLine.payload }}
-        </pre>
-        <pre class="col-span-2">
-          {{ statusLine.headers }}
-        </pre>
       </li>
     </ul>
     <pre
