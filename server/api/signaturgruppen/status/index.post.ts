@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) => {
         values (${eventType}, ${payload}, ${headers})
     `;
 
-    notifyJemomiDiscordServer(`⚠️ New SignaturGruppen Status: ${payload}`)
+    notifyJemomiDiscordServer(`⚠️ New SignaturGruppen Status: ${raw}`)
 
     return {
         statusCode: 200,
