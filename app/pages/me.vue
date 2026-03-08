@@ -17,11 +17,19 @@
         I love music, and it has always been a huge part of my life!
       </p>
     </section>
+    <section>
+      <h2>
+        Code! 💾
+      </h2>
+      <p>
+        GitHub!
+      </p>
+    </section>
   </article>
 </template>
 
 <script setup lang="ts">
-
+  const lil = useFetch('/api/spotify/me')
 </script>
 
 <style scoped>
