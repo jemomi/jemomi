@@ -1,3 +1,5 @@
+import {getSpotifyAccessToken} from '#server/utils/spotify';
+
 export default defineCachedEventHandler(async (): Promise<unknown> => {
 
     // 1WNoKxsp715jez1Td4vthc <- might be EC artist id
