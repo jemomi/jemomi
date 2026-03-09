@@ -16,6 +16,25 @@
       <p>
         I love music, and it has always been a huge part of my life!
       </p>
+      <article v-if="favoriteArtists.data">
+        <h3>
+          Favorite artists
+        </h3>
+        <div
+          class="grid grid-cols-[repeat(auto-fit,minmax(200px,250px))] gap-4 my-4"
+          role="list"
+        >
+          <a
+            v-for="artist in favoriteArtists.data.value"
+            class="flex flex-col items-center border border-zinc-700 p-4 rounded-lg underline underline-offset-2 hover:no-underline"
+            :href="artist.external_urls.spotify"
+            target="_blank"
+            role="listitem"
+          >
+            <SpotifyArtistTile :artist />
+          </a>
+        </div>
+      </article>
     </section>
     <section>
       <h2>
@@ -29,9 +48,6 @@
 </template>
 
 <script setup lang="ts">
-  const lil = useFetch('/api/spotify/me')
+  const favoriteArtists = useFetch('/api/spotify/favorite-artists')
+  
 </script>
-
-<style scoped>
-
-</style>
