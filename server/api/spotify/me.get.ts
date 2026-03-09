@@ -1,18 +1,13 @@
 import {getSpotifyAccessToken} from '#server/utils/spotify';
 
 export default defineCachedEventHandler(async (): Promise<unknown> => {
-
-    // 1WNoKxsp715jez1Td4vthc <- might be EC artist id
-
-
     /*Links:
     * https://developer.spotify.com/documentation/web-api/tutorials/getting-started
-    * https://developer.spotify.com/documentation/web-api/concepts/api-calls?utm_source=chatgpt.com
+    * https://developer.spotify.com/documentation/web-api/concepts/api-calls
     * maybe api below works after credential's login?
     * https://developer.spotify.com/documentation/web-api/reference/get-current-users-profile
-    * but might be bad?
-    *
-    * How else can i get my public playlists in an automatic way?
+    * That way a visitor, with a spotify login can see my profile info
+    * But will be left for another time...
     * */
 
     const token = await getSpotifyAccessToken()
