@@ -12,7 +12,7 @@ export async function getSpotifyAccessToken() {
         return cached.accessToken
     }
 
-    const { spotify } = useRuntimeConfig()
+    const { oauth } = useRuntimeConfig()
 
     /*const basic = Buffer
         .from(`${config.spotifyClientId}:${config.spotifyClientSecret}`)
@@ -30,8 +30,8 @@ export async function getSpotifyAccessToken() {
         },
         body: {
             grant_type: 'client_credentials',
-            client_id: spotify.clientId,
-            client_secret: spotify.clientSecret,
+            client_id: oauth.spotify.clientId,
+            client_secret: oauth.spotify.clientSecret,
         }
     })
 
