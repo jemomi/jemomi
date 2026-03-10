@@ -6,7 +6,9 @@
     :height="image.height"
     class="mb-2 rounded-[100%] group-hover:rounded-none transition-all duration-200 object-cover aspect-square"
   />
-  {{ artist.name }}
+  <span class="underline underline-offset-2 group-hover:no-underline">
+    {{ artist.name }}
+  </span>
 </template>
 
 <script setup lang="ts">
