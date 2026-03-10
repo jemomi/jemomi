@@ -1,5 +1,5 @@
 <template>
-  <article class="container mx-auto">
+  <article class="container mx-auto px-4">
     <h1>
       Hello 👋
       <span>My name is</span> <!-- switching translation, jeg hedder, je suis, ich bin others... -->
@@ -18,15 +18,15 @@
       </p>
       <article v-if="favoriteArtists.data">
         <h3>
-          Favorite artists
+          Some of my favorite artists
         </h3>
         <div
-          class="grid grid-cols-[repeat(auto-fit,minmax(200px,250px))] gap-4 my-4"
+          class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 my-4"
           role="list"
         >
           <a
             v-for="artist in favoriteArtists.data.value"
-            class="flex flex-col items-center border border-zinc-700 p-4 rounded-lg underline underline-offset-2 hover:no-underline"
+            class="group flex flex-col items-center border border-zinc-700 p-4 rounded-lg underline underline-offset-2 hover:no-underline"
             :href="artist.external_urls.spotify"
             target="_blank"
             role="listitem"

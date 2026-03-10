@@ -4,6 +4,7 @@
     :src="image.url"
     :width="image.width"
     :height="image.height"
+    class="mb-2 rounded-[100%] group-hover:rounded-none transition-all duration-200 object-cover aspect-square"
   />
   {{ artist.name }}
 </template>
@@ -18,7 +19,7 @@ const props = defineProps<{
 const image = getArtistImage()
 
 function getArtistImage() {
-  const image = unref(props.artist.images.at(-1));
+  const image = unref(props.artist.images.at(1));
   
   if (!image) {
     return null;
