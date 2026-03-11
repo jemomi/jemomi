@@ -25,7 +25,6 @@ export default defineCachedEventHandler(async () => {
         result.push(res)
     }
 
-    console.log(0, result)
     return result
 }, {
     maxAge: 1000 * 60 * 60 * 24, // 24h cache
