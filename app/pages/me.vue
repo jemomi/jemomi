@@ -26,6 +26,7 @@
         >
           <a
             v-for="artist in favoriteArtists.data.value"
+            :key="artist.id"
             class="group flex flex-col items-center border border-zinc-700 p-4 rounded-lg"
             :href="artist.external_urls.spotify"
             target="_blank"
@@ -45,6 +46,7 @@
         >
           <a
             v-for="playlist in playlists.data.value"
+            :key="playlist.id"
             class="group flex flex-col items-center border border-zinc-700 p-4 rounded-lg"
             :href="playlist.external_urls.spotify"
             target="_blank"
