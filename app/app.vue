@@ -15,6 +15,12 @@
         >
           MitID status
         </NuxtLink>
+        <NuxtLink
+          to="/me"
+          class="p-4 hover:bg-zinc-500/50 transition-colors rounded-lg"
+        >
+          Me
+        </NuxtLink>
       </nav>
       <div class="flex justify-end gap-8">
         <div
