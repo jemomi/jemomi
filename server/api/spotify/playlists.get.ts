@@ -1,7 +1,7 @@
 import {getSpotifyAccessToken} from '#server/utils/spotify';
 import type {SpotifyPlaylist} from '#shared/types/spotify';
 
-export default defineCachedEventHandler(async (event) => {
+export default defineCachedEventHandler(async () => {
 
     const playlistIds = [
         '223cs3uY3L6HPTqfy97VOB',

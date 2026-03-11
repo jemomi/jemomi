@@ -1,7 +1,7 @@
 import {getSpotifyAccessToken} from '#server/utils/spotify';
 import type {SpotifyArtist} from '#shared/types/spotify';
 
-export default defineCachedEventHandler(async (event) => {
+export default defineCachedEventHandler(async () => {
 
     const artistIds = [
         '1WNoKxsp715jez1Td4vthc',
