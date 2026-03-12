@@ -33,10 +33,9 @@
         </p>
       </li>
     </ul>
-    <pre
-      v-if="error"
-      v-html="error"
-    />
+    <pre v-if="error">
+      {{error}}
+    </pre>
   </div>
 </template>
 

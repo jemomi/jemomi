@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import type {GitHubUserRepo} from '#shared/types/github';
 
-const props = defineProps<{
+defineProps<{
   repo: GitHubUserRepo
 }>()
 
