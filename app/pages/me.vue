@@ -64,6 +64,17 @@
       <p>
         GitHub!
       </p>
+      
+      <div
+        v-if="repos"
+        class="grid my-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+      >
+        <GithubRepoTile
+          v-for="repo in repos.data.value"
+          :key="`gitRepo-${repo.id}`"
+          :repo
+        />
+      </div>
     </section>
   </article>
 </template>
@@ -72,4 +83,5 @@
   const favoriteArtists = useFetch('/api/spotify/favorite-artists')
   const playlists = useFetch('/api/spotify/playlists')
   
+  const repos = useFetch('/api/github/repos')
 </script>
