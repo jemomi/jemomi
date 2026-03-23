@@ -19,7 +19,7 @@
       >
         <p>
           <NuxtLink
-            :to="`/mit-id-status/${statusLine.id}`"
+            :to="`/app/pages/api/signaturgruppen-status/${statusLine.id}`"
             class="underline underline-offset-2 hover:no-underline"
           >
             See more for: {{ statusLine.id }}

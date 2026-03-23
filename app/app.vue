@@ -10,10 +10,10 @@
           Home
         </NuxtLink>
         <NuxtLink
-          to="/mit-id-status"
+          to="/api/signaturgruppen-status"
           class="p-4 hover:bg-zinc-500/50 transition-colors rounded-lg"
         >
-          MitID status
+          SignaturGruppen status
         </NuxtLink>
         <NuxtLink
           to="/me"
