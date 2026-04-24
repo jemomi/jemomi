@@ -37,7 +37,7 @@ const buildIncidentDiscordMessage = (
     const state = getIncidentStateMeta(incident.status, incident.impact);
     const timestamp = latestUpdate?.created_at ?? incident.updated_at ?? payload.meta.generated_at;
     const summary = latestUpdate?.body ?? `${incident.name} changed to ${humanizeToken(incident.status ?? 'unknown')}.`;
-    const titlePrefix = options.isTest ? '[TEST] ' : '';
+    const titlePrefix = incident.status === 'testing' ? '[TEST] ' : '';
     const pageStatus = payload.page.status_description ?? humanizeToken(payload.page.status_indicator ?? 'unknown');
     const detailsUrl = getSignaturDetailsUrl(options.recordId) ?? incident.shortlink;
 
@@ -72,7 +72,7 @@ const buildComponentDiscordMessage = (
 ): DiscordWebhookMessage => {
     const nextStatus = payload.component_update.new_status ?? payload.component.status ?? 'unknown';
     const state = getComponentStateMeta(nextStatus);
-    const titlePrefix = options.isTest ? '[TEST] ' : '';
+    const titlePrefix = payload.component.status === 'testing' ? '[TEST] ' : '';
     const detailsUrl = getSignaturDetailsUrl(options.recordId);
 
     return {
