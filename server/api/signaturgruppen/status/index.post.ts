@@ -1,6 +1,14 @@
 import { neon } from '@neondatabase/serverless';
 import {getDatabaseUrl} from '#server/utils/database';
 
+const getRuntimeMarker = () => {
+    const env = process.env.VERCEL_ENV ?? process.env.NODE_ENV ?? 'unknown-env';
+    const commit = (process.env.VERCEL_GIT_COMMIT_SHA ?? 'unknown-commit').slice(0, 7);
+    const host = process.env.VERCEL_URL ?? process.env.URL ?? process.env.HOSTNAME ?? 'unknown-host';
+
+    return `source=jemomi-signaturgruppen env=${env} commit=${commit} host=${host}`;
+}
+
 export default defineEventHandler(async (event) => {
     const databaseUrl = getDatabaseUrl()
 
@@ -25,7 +33,7 @@ export default defineEventHandler(async (event) => {
         values (${eventType}, ${payload}, ${headers})
     `;
 
-    notifyJemomiDiscordServer(`⚠️ New SignaturGruppen Status: ${raw}`)
+    notifyJemomiDiscordServer(`[${getRuntimeMarker()}] WARNING New SignaturGruppen Status: ${raw}`)
 
     return {
         statusCode: 200,
