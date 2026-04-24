@@ -1,11 +1,9 @@
 import { neon } from '@neondatabase/serverless';
 import type { Status } from '#shared/types/signaturGruppen';
 import { getDatabaseUrl } from '#server/utils/database';
-import {
-    buildSignaturDiscordMessage,
-    createSignaturTestPayload,
-    getSignaturRuntimeMarker,
-} from '#server/utils/signaturgruppen';
+import { buildSignaturDiscordMessage } from '#server/utils/signaturgruppen/discordFormatter';
+import { getSignaturRuntimeMarker } from '#server/utils/signaturgruppen/runtime';
+import { createSignaturTestPayload } from '#server/utils/signaturgruppen/testPayload';
 
 interface TestRequestBody {
     eventId?: number;

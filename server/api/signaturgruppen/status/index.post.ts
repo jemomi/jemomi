@@ -1,7 +1,8 @@
 import { neon } from '@neondatabase/serverless';
 import {getDatabaseUrl} from '#server/utils/database';
 import type { Status } from '#shared/types/signaturGruppen';
-import { buildSignaturDiscordMessage, getSignaturRuntimeMarker } from '#server/utils/signaturgruppen';
+import { buildSignaturDiscordMessage } from '#server/utils/signaturgruppen/discordFormatter';
+import { getSignaturRuntimeMarker } from '#server/utils/signaturgruppen/runtime';
 
 export default defineEventHandler(async (event) => {
     const databaseUrl = getDatabaseUrl()
