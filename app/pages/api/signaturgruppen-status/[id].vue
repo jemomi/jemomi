@@ -42,6 +42,13 @@
       >
         {{ eventTestMessage }}
       </p>
+      <NuxtLink
+        v-if="eventTestUrl"
+        :to="eventTestUrl"
+        class="mt-2 inline-block text-sm underline underline-offset-2 hover:no-underline"
+      >
+        Open created event
+      </NuxtLink>
     </div>
 
     <div class="grid gap-6 lg:grid-cols-2">
@@ -83,6 +90,7 @@ const {loggedIn} = useUserSession()
 
 const isSendingEventTest = ref(false)
 const eventTestMessage = ref('')
+const eventTestUrl = ref('')
 
 const getEventTitle = (statusLine: Status) => {
   if ('incident' in statusLine.payload) {
@@ -99,18 +107,20 @@ const sendEventTest = async () => {
 
   isSendingEventTest.value = true
   eventTestMessage.value = ''
+  eventTestUrl.value = ''
 
   try {
-    const response = await $fetch<{ previewTitle: string | null }>('/api/signaturgruppen/status/test', {
+    const response = await $fetch<{ createdRecordId: number | null; eventUrl: string | null }>('/api/signaturgruppen/status/test', {
       method: 'POST',
       body: {
         eventId: data.value.id,
       },
     })
 
-    eventTestMessage.value = response.previewTitle
-      ? `Sent: ${response.previewTitle}`
+    eventTestMessage.value = response.createdRecordId
+      ? `Discord test notification sent and stored as event #${response.createdRecordId}.`
       : 'Discord test notification sent.'
+    eventTestUrl.value = response.eventUrl ?? ''
   } catch (testError) {
     eventTestMessage.value = testError instanceof Error
       ? testError.message

@@ -3,18 +3,18 @@ import type { SignaturIncidentPayload } from '#shared/types/signaturGruppen';
 export const createSignaturTestPayload = (): SignaturIncidentPayload => ({
     meta: {
         event_type: 'verification_test',
-        generated_at: '2026-04-24T12:34:56.000Z',
+        generated_at: new Date().toISOString(),
     },
     page: {
         id: 'test-page',
         status_indicator: 'none',
-        status_description: 'All Systems Operational',
+        status_description: 'Local testing incident',
     },
     incident: {
         id: 'test-incident-20260424',
         name: 'Verification notification from jemomi',
-        impact: 'maintenance',
-        status: 'in_progress',
+        impact: 'testing',
+        status: 'testing',
         shortlink: 'https://jemomi.vercel.app/api/signaturgruppen-status',
         components: [
             {
@@ -26,7 +26,7 @@ export const createSignaturTestPayload = (): SignaturIncidentPayload => ({
         incident_updates: [
             {
                 id: 'test-update-20260424',
-                status: 'in_progress',
+                status: 'testing',
                 body: 'This is a self-test notification generated from jemomi. If you can read this embed, Discord formatting is working.',
                 affected_components: [
                     {

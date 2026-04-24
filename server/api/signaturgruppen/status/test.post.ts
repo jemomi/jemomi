@@ -1,8 +1,6 @@
 import { neon } from '@neondatabase/serverless';
 import type { Status } from '#shared/types/signaturGruppen';
 import { getDatabaseUrl } from '#server/utils/database';
-import { buildSignaturDiscordMessage } from '#server/utils/signaturgruppen/discordFormatter';
-import { getSignaturRuntimeMarker } from '#server/utils/signaturgruppen/runtime';
 import { createSignaturTestPayload } from '#server/utils/signaturgruppen/testPayload';
 
 interface TestRequestBody {
@@ -17,7 +15,7 @@ export default defineEventHandler(async (event) => {
 
     let payload: Status['payload'];
     let source: 'fixture' | 'database';
-    let recordId: number | null = null;
+    let sourceRecordId: number | null = null;
 
     if (Number.isFinite(requestedId)) {
         const sql = neon(getDatabaseUrl());
@@ -37,24 +35,24 @@ export default defineEventHandler(async (event) => {
 
         payload = record.payload;
         source = 'database';
-        recordId = record.id;
+        sourceRecordId = record.id;
     } else {
         payload = createSignaturTestPayload();
         source = 'fixture';
     }
 
-    const message = buildSignaturDiscordMessage(payload, {
-        runtimeMarker: getSignaturRuntimeMarker(),
-        recordId,
-        isTest: true,
+    const response = await $fetch<{ id: number | null; ok: boolean }>('/api/signaturgruppen/status', {
+        method: 'POST',
+        body: payload,
     });
 
-    await notifyJemomiDiscordServer(message)
+    const createdRecordId = response.id ?? null;
 
     return {
-        ok: true,
+        ok: response.ok,
         source,
-        recordId,
-        previewTitle: message.embeds?.[0]?.title ?? null,
+        sourceRecordId,
+        createdRecordId,
+        eventUrl: createdRecordId ? `/api/signaturgruppen-status/${createdRecordId}` : null,
     };
 })

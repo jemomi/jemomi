@@ -36,6 +36,13 @@
       >
         {{ fixtureTestMessage }}
       </p>
+      <NuxtLink
+        v-if="fixtureTestUrl"
+        :to="fixtureTestUrl"
+        class="mt-2 inline-block text-sm underline underline-offset-2 hover:no-underline"
+      >
+        Open created event
+      </NuxtLink>
     </div>
 
     <p v-if="pending">
@@ -85,6 +92,7 @@ const {loggedIn} = useUserSession()
 
 const isSendingFixtureTest = ref(false)
 const fixtureTestMessage = ref('')
+const fixtureTestUrl = ref('')
 
 const formatDate = (value: Date | string) => {
   return new Date(value).toLocaleString()
@@ -113,16 +121,18 @@ const sendFixtureTest = async () => {
 
   isSendingFixtureTest.value = true
   fixtureTestMessage.value = ''
+  fixtureTestUrl.value = ''
 
   try {
-    const response = await $fetch<{ previewTitle: string | null }>('/api/signaturgruppen/status/test', {
+    const response = await $fetch<{ createdRecordId: number | null; eventUrl: string | null }>('/api/signaturgruppen/status/test', {
       method: 'POST',
       body: {},
     })
 
-    fixtureTestMessage.value = response.previewTitle
-      ? `Sent: ${response.previewTitle}`
+    fixtureTestMessage.value = response.createdRecordId
+      ? `Sample Discord notification sent and stored as event #${response.createdRecordId}.`
       : 'Sample Discord notification sent.'
+    fixtureTestUrl.value = response.eventUrl ?? ''
   } catch (testError) {
     fixtureTestMessage.value = testError instanceof Error
       ? testError.message
