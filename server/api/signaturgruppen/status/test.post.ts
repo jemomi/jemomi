@@ -12,7 +12,7 @@ interface TestRequestBody {
 export default defineEventHandler(async (event) => {
     await requireUserSession(event)
 
-    const requestBody = await readBody<TestRequestBody>(event).catch(() => ({}));
+    const requestBody = await readBody<TestRequestBody>(event).catch(() => ({} as TestRequestBody));
     const requestedId = Number(requestBody?.eventId);
 
     let payload: Status['payload'];
@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
 
     if (Number.isFinite(requestedId)) {
         const sql = neon(getDatabaseUrl());
-        const [record] = await sql<Status[]>`
+        const [record] = await sql`
             select *
             from public.signatur_events
             where id = ${requestedId}

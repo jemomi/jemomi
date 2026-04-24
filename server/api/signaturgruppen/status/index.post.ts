@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
     const headers = getHeaders(event);
 
     const sql = neon(databaseUrl);
-    const [inserted] = await sql<Pick<Status, 'id'>[]>`
+    const [inserted] = await sql`
         insert into signatur_events (event_type, payload, headers)
         values (${eventType}, ${payload}, ${headers})
         returning id
