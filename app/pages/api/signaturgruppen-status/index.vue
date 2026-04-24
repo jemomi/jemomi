@@ -1,49 +1,134 @@
 <template>
-  <div class="container mx-auto">
-    <h1>
-      This page will show a list of incident status' from mit-id
-    </h1>
-    <p class="pb-8">
-      Whenever an incident is reported from SignaturGruppen, I use their own "Subscribe to updates" feature, having given them a webhook they can post to.
-      <br>
-      Then the incident is saved to a database, and listed below.
-    </p>
+  <div class="container mx-auto space-y-6">
+    <div class="space-y-2">
+      <h1 class="text-2xl font-semibold">
+        SignaturGruppen status events
+      </h1>
+      <p class="max-w-3xl text-zinc-300">
+        SignaturGruppen posts webhook events to this app. The events are stored in the database and forwarded to Discord using a formatted notification.
+      </p>
+    </div>
+
+    <div
+      v-if="loggedIn"
+      class="rounded-xl border border-zinc-700 bg-zinc-900/60 p-4"
+    >
+      <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+        <div>
+          <h2 class="font-medium">
+            Test Discord notification
+          </h2>
+          <p class="text-sm text-zinc-400">
+            Sends a built-in sample notification to Discord so you can verify formatting without waiting for a real incident.
+          </p>
+        </div>
+        <button
+          class="rounded-md bg-blue-700 px-4 py-2 text-sm font-medium hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-zinc-700"
+          :disabled="isSendingFixtureTest"
+          @click="sendFixtureTest"
+        >
+          {{ isSendingFixtureTest ? 'Sending…' : 'Send sample test' }}
+        </button>
+      </div>
+      <p
+        v-if="fixtureTestMessage"
+        class="mt-3 text-sm text-zinc-300"
+      >
+        {{ fixtureTestMessage }}
+      </p>
+    </div>
+
     <p v-if="pending">
-      pending...
+      Loading events...
     </p>
-    <ul v-if="data">
-      <li
+
+    <div
+      v-else-if="data"
+      class="space-y-3"
+    >
+      <div
         v-for="statusLine in data"
         :key="`status-${statusLine.id}`"
-        class="grid grid-cols-7 odd:bg-zinc-700"
+        class="rounded-xl border border-zinc-800 bg-zinc-900/60 p-4"
       >
-        <p>
-          <NuxtLink
-            :to="`/app/pages/api/signaturgruppen-status/${statusLine.id}`"
-            class="underline underline-offset-2 hover:no-underline"
-          >
-            See more for: {{ statusLine.id }}
-          </NuxtLink>
-        </p>
-        <p>
-          {{ new Date(statusLine.received_at).toLocaleString() }}
-        </p>
-        <p>
-          {{ statusLine.event_type }}
-        </p>
-      </li>
-    </ul>
-    <pre v-if="error">
-      {{error}}
-    </pre>
+        <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+          <div class="space-y-1">
+            <NuxtLink
+              :to="`/api/signaturgruppen-status/${statusLine.id}`"
+              class="text-lg font-medium underline underline-offset-2 hover:no-underline"
+            >
+              Event #{{ statusLine.id }}
+            </NuxtLink>
+            <p class="text-sm text-zinc-400">
+              {{ formatDate(statusLine.received_at) }}
+            </p>
+            <p class="text-sm text-zinc-300">
+              {{ getEventTitle(statusLine) }}
+            </p>
+          </div>
+          <div class="text-sm text-zinc-400">
+            {{ getEventStatus(statusLine) }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <pre v-if="error">{{ error }}</pre>
   </div>
 </template>
 
 <script setup lang="ts">
+import type { Status } from '#shared/types/signaturGruppen';
 
-const {data, error, pending} = await useFetch('/api/signaturgruppen/status');
+const {data, error, pending} = await useFetch<Status[]>('/api/signaturgruppen/status');
+const {loggedIn} = useUserSession()
+
+const isSendingFixtureTest = ref(false)
+const fixtureTestMessage = ref('')
+
+const formatDate = (value: Date | string) => {
+  return new Date(value).toLocaleString()
+}
+
+const getEventTitle = (statusLine: Status) => {
+  if ('incident' in statusLine.payload) {
+    return statusLine.payload.incident.name
+  }
+
+  return statusLine.payload.component.name ?? statusLine.event_type ?? 'Unknown event'
+}
+
+const getEventStatus = (statusLine: Status) => {
+  if ('incident' in statusLine.payload) {
+    return statusLine.payload.incident.status ?? statusLine.event_type ?? 'Unknown'
+  }
+
+  return statusLine.payload.component_update.new_status ?? statusLine.payload.component.status ?? statusLine.event_type ?? 'Unknown'
+}
+
+const sendFixtureTest = async () => {
+  if (isSendingFixtureTest.value) {
+    return
+  }
+
+  isSendingFixtureTest.value = true
+  fixtureTestMessage.value = ''
+
+  try {
+    const response = await $fetch<{ previewTitle: string | null }>('/api/signaturgruppen/status/test', {
+      method: 'POST',
+      body: {},
+    })
+
+    fixtureTestMessage.value = response.previewTitle
+      ? `Sent: ${response.previewTitle}`
+      : 'Sample Discord notification sent.'
+  } catch (testError) {
+    fixtureTestMessage.value = testError instanceof Error
+      ? testError.message
+      : 'Failed to send sample Discord notification.'
+  } finally {
+    isSendingFixtureTest.value = false
+  }
+}
 </script>
-
-<style scoped>
-
-</style>
