@@ -1,17 +1,21 @@
-export async function notifyJemomiDiscordServer(message: string) {
+import type { DiscordWebhookMessage } from '#server/utils/signaturgruppen';
+
+export async function notifyJemomiDiscordServer(message: string | DiscordWebhookMessage) {
     const notificationBotUrl = getNotificationBotUrl()
 
     const target = new URL(notificationBotUrl);
     target.searchParams.set("wait", 'false');
+
+    const body = typeof message === 'string'
+        ? { content: message }
+        : message;
 
     const response = await fetch(target, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-            content: message,
-        })
+        body: JSON.stringify(body)
     });
 
     if (!response.ok) {
