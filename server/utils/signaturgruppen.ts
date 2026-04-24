@@ -118,13 +118,14 @@ const buildIncidentDiscordMessage = (
     const summary = latestUpdate?.body ?? `${incident.name} changed to ${humanizeToken(incident.status ?? 'unknown')}.`;
     const titlePrefix = options.isTest ? '[TEST] ' : '';
     const pageStatus = payload.page.status_description ?? humanizeToken(payload.page.status_indicator ?? 'unknown');
+    const detailsUrl = getSignaturDetailsUrl(options.recordId) ?? incident.shortlink;
 
     return {
         embeds: [
             {
                 title: truncate(`${titlePrefix}${state.label}: ${incident.name}`, 256),
                 description: truncate(summary, 350),
-                url: incident.shortlink,
+                url: detailsUrl,
                 color: state.color,
                 fields: compactFields([
                     inlineField('Status', humanizeToken(incident.status ?? 'unknown')),
@@ -151,12 +152,14 @@ const buildComponentDiscordMessage = (
     const nextStatus = payload.component_update.new_status ?? payload.component.status ?? 'unknown';
     const state = getComponentStateMeta(nextStatus);
     const titlePrefix = options.isTest ? '[TEST] ' : '';
+    const detailsUrl = getSignaturDetailsUrl(options.recordId);
 
     return {
         embeds: [
             {
                 title: truncate(`${titlePrefix}${state.label}: ${payload.component.name}`, 256),
                 description: `${humanizeToken(payload.component_update.old_status ?? 'unknown')} -> ${humanizeToken(payload.component_update.new_status ?? payload.component.status ?? 'unknown')}`,
+                url: detailsUrl,
                 color: state.color,
                 fields: compactFields([
                     inlineField('Component', payload.component.name),
@@ -176,6 +179,30 @@ const buildComponentDiscordMessage = (
 
 const buildFooter = (runtimeMarker: string, isTest?: boolean) => {
     return isTest ? `${runtimeMarker} • TEST` : runtimeMarker;
+}
+
+const getSignaturDetailsUrl = (recordId?: number | null) => {
+    if (!recordId) {
+        return null;
+    }
+
+    return `${getPublicAppUrl()}/api/signaturgruppen-status/${recordId}`;
+}
+
+const getPublicAppUrl = () => {
+    const explicitUrl = process.env.URL;
+    if (explicitUrl) {
+        return explicitUrl.replace(/\/$/, '');
+    }
+
+    const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_URL;
+    if (vercelUrl) {
+        const normalized = vercelUrl.startsWith('http') ? vercelUrl : `https://${vercelUrl}`;
+
+        return normalized.replace(/\/$/, '');
+    }
+
+    return 'http://localhost:3000';
 }
 
 const compactFields = (fields: Array<DiscordEmbedField | null>): DiscordEmbedField[] => {
