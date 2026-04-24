@@ -1,4 +1,4 @@
-import type { DiscordWebhookMessage } from '#server/utils/signaturgruppen';
+import type { DiscordWebhookMessage } from '#server/types/signaturgruppenDiscord';
 
 export async function notifyJemomiDiscordServer(message: string | DiscordWebhookMessage) {
     const notificationBotUrl = getNotificationBotUrl()
