@@ -5,7 +5,7 @@ export default defineOAuthGitHubEventHandler({
     async onSuccess(event, { user }) {
         const allowed = process.env.NUXT_ALLOWED_GITHUB_ID
         if (!allowed || String(user.id) !== String(allowed)) {
-            notifyJemomiDiscordServer(`🔒 Failed login attempt from: ${user.name}`)
+            await notifyDiscord(`🔒 Failed login attempt from: ${user.name}`)
 
             throw createError({ statusCode: 403, message: 'Not allowed' })
         }
@@ -17,7 +17,7 @@ export default defineOAuthGitHubEventHandler({
             }
         })
 
-        notifyJemomiDiscordServer(`New login from: ${user.name}`)
+        await notifyDiscord(`New login from: ${user.name}`)
 
         return sendRedirect(event, '/')
     },

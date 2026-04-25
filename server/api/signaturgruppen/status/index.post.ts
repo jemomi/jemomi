@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
         returning id
     `;
 
-    await notifyJemomiDiscordServer(buildSignaturDiscordMessage(payload, {
+    await notifyDiscord(buildSignaturDiscordMessage(payload, {
         runtimeMarker: getSignaturRuntimeMarker(),
         recordId: inserted?.id ?? null,
     }))

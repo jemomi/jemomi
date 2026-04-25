@@ -1,8 +1,13 @@
 import type { DiscordWebhookMessage } from '#server/types/signaturgruppenDiscord';
 
-export async function notifyJemomiDiscordServer(message: string | DiscordWebhookMessage) {
-    const notificationBotUrl = getNotificationBotUrl()
+export async function notifyDiscord(message: string | DiscordWebhookMessage) {
+    const discordWebhooks = getDiscordWebhooks()
+    const arrDiscordWebhooks: string[] = JSON.parse(discordWebhooks)
 
+    await Promise.all(arrDiscordWebhooks.map(url => notifyDiscordServer(url, message)))
+}
+
+async function notifyDiscordServer(notificationBotUrl: string, message: string | DiscordWebhookMessage) {
     const target = new URL(notificationBotUrl);
     target.searchParams.set("wait", 'false');
 
@@ -11,23 +16,23 @@ export async function notifyJemomiDiscordServer(message: string | DiscordWebhook
         : message;
 
     const response = await fetch(target, {
-        method: "POST",
+        method: 'POST',
         headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(body)
-    });
+        body: JSON.stringify(body),
+    })
 
     if (!response.ok) {
         const errorText = await response.text().catch(() => '')
-        throw createError({statusCode: 500, statusMessage: errorText});
+        throw createError({ statusCode: 500, statusMessage: errorText })
     }
 }
 
-const getNotificationBotUrl = () => {
-    const { discordNotificationBotUrl } = useRuntimeConfig()
-    if (!discordNotificationBotUrl) {
-        throw createError({statusCode: 500, statusMessage: "Missing discordNotificationBotUrl"});
+const getDiscordWebhooks = () => {
+    const { discordNotificationWebhooks } = useRuntimeConfig()
+    if (!discordNotificationWebhooks) {
+        throw createError({statusCode: 500, statusMessage: "Missing discordNotificationWebhooks"});
     }
-    return discordNotificationBotUrl;
+    return discordNotificationWebhooks;
 }
