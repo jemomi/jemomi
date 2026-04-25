@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
         returning id
     `;
 
-    await notifyDiscord(buildSignaturDiscordMessage(payload, {
+    await notifyAllDiscord(buildSignaturDiscordMessage(payload, {
         runtimeMarker: getSignaturRuntimeMarker(),
         recordId: inserted?.id ?? null,
     }))

@@ -21,6 +21,7 @@ export default defineNuxtConfig({
             }
         },
         databaseUrl: process.env.DATABASE_URL,
-        discordNotificationWebhooks: process.env.DISCORD_NOTIFICATION_WEBHOOKS,
+        discordPrivateWebhook: process.env.DISCORD_PRIVATE_WEBHOOK,
+        discordSubscriberWebhooks: process.env.DISCORD_SUBSCRIBER_WEBHOOKS,
     }
 })
