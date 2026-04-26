@@ -102,6 +102,10 @@ const getEventTitle = (statusLine: Status) => {
   if ('incident' in statusLine.payload) {
     return statusLine.payload.incident?.name
   }
+  
+  if (!statusLine.payload.component) {
+    console.log(0, statusLine)
+  }
 
   return statusLine.payload.component?.name ?? statusLine.event_type ?? 'Unknown event'
 }
@@ -110,8 +114,12 @@ const getEventStatus = (statusLine: Status) => {
   if ('incident' in statusLine.payload) {
     return statusLine.payload.incident.status ?? statusLine.event_type ?? 'Unknown'
   }
+  
+  if (!statusLine.payload.component_update) {
+    console.log(0, statusLine)
+  }
 
-  return statusLine.payload.component_update.new_status ?? statusLine.payload.component.status ?? statusLine.event_type ?? 'Unknown'
+  return statusLine.payload.component_update?.new_status ?? statusLine.payload.component.status ?? statusLine.event_type ?? 'Unknown'
 }
 
 const sendFixtureTest = async () => {
