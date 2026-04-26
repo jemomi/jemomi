@@ -11,5 +11,6 @@ export default defineCachedEventHandler(async (): Promise<Status[]> => {
     ` as Status[];
 }, {
     maxAge: 1000 * 60 * 60, // 1 hour cache
-    swr: true
+    swr: true,
+    shouldBypassCache: () => true
 })
