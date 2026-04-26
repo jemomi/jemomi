@@ -100,10 +100,10 @@ const formatDate = (value: Date | string) => {
 
 const getEventTitle = (statusLine: Status) => {
   if ('incident' in statusLine.payload) {
-    return statusLine.payload.incident.name
+    return statusLine.payload.incident?.name
   }
 
-  return statusLine.payload.component.name ?? statusLine.event_type ?? 'Unknown event'
+  return statusLine.payload.component?.name ?? statusLine.event_type ?? 'Unknown event'
 }
 
 const getEventStatus = (statusLine: Status) => {
