@@ -53,31 +53,11 @@
       v-else-if="data"
       class="space-y-3"
     >
-      <div
+      <SignaturgruppenStatusLineCard
         v-for="statusLine in data"
         :key="`status-${statusLine.id}`"
-        class="rounded-xl border border-zinc-800 bg-zinc-900/60 p-4"
-      >
-        <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-          <div class="space-y-1">
-            <NuxtLink
-              :to="`/api/signaturgruppen-status/${statusLine.id}`"
-              class="text-lg font-medium underline underline-offset-2 hover:no-underline"
-            >
-              Event #{{ statusLine.id }}
-            </NuxtLink>
-            <p class="text-sm text-zinc-400">
-              {{ formatDate(statusLine.received_at) }}
-            </p>
-            <p class="text-sm text-zinc-300">
-              {{ getEventTitle(statusLine) }}
-            </p>
-          </div>
-          <div class="text-sm text-zinc-400">
-            {{ getEventStatus(statusLine) }}
-          </div>
-        </div>
-      </div>
+        :status-line="statusLine"
+      />
     </div>
 
     <pre v-if="error">{{ error }}</pre>
@@ -93,34 +73,6 @@ const {loggedIn} = useUserSession()
 const isSendingFixtureTest = ref(false)
 const fixtureTestMessage = ref('')
 const fixtureTestUrl = ref('')
-
-const formatDate = (value: Date | string) => {
-  return new Date(value).toLocaleString()
-}
-
-const getEventTitle = (statusLine: Status) => {
-  if ('incident' in statusLine.payload) {
-    return statusLine.payload.incident?.name
-  }
-  
-  if (!statusLine.payload.component) {
-    console.log(0, statusLine)
-  }
-
-  return statusLine.payload.component?.name ?? statusLine.event_type ?? 'Unknown event'
-}
-
-const getEventStatus = (statusLine: Status) => {
-  if ('incident' in statusLine.payload) {
-    return statusLine.payload.incident.status ?? statusLine.event_type ?? 'Unknown'
-  }
-  
-  if (!statusLine.payload.component_update) {
-    console.log(0, statusLine)
-  }
-
-  return statusLine.payload.component_update?.new_status ?? statusLine.payload.component.status ?? statusLine.event_type ?? 'Unknown'
-}
 
 const sendFixtureTest = async () => {
   if (isSendingFixtureTest.value) {
