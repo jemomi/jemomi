@@ -39,6 +39,6 @@ export default defineCachedEventHandler<Promise<Status>>(async (event) => {
 
     return row
 }, {
-    maxAge: 1000 * 60 * 60 * 24, // 1 day cache
+    maxAge: 60 * 60 * 24, // 1 day cache
     swr: true
 })

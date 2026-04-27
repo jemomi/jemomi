@@ -18,6 +18,6 @@ export default defineCachedEventHandler(async (): Promise<unknown> => {
         }
     })
 }, {
-    maxAge: 1000 * 60 * 60, // 1 hour cache
+    maxAge: 60 * 60, // 1 hour cache
     swr: true
 })

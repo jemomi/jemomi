@@ -41,5 +41,5 @@ export default defineCachedEventHandler(async () => {
 
     return result
 }, {
-    maxAge: 1000 * 60 * 60 * 24, // 24h cache
+    maxAge: 60 * 60 * 24, // 24h cache
 })
