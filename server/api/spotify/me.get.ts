@@ -11,15 +11,12 @@ export default defineCachedEventHandler(async (): Promise<unknown> => {
     * */
 
     const token = await getSpotifyAccessToken()
-    const res = await $fetch('https://api.spotify.com/v1/me', {
+    return await $fetch('https://api.spotify.com/v1/me', {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${ token }`
         }
     })
-    console.log(0, res)
-
-    return res
 }, {
     maxAge: 1000 * 60 * 60, // 1 hour cache
     swr: true

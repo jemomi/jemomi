@@ -1,8 +1,6 @@
 import type {GitHubUserRepos} from '#shared/types/github';
 
 export default defineCachedEventHandler(async () => {
-    console.log(0, 'connection!')
-
     return $fetch<GitHubUserRepos>('https://api.github.com/users/jemomi/repos', {
         query: {
             sort: 'updated',
