@@ -5,10 +5,49 @@
       <span>My name is</span> <!-- switching translation, jeg hedder, je suis, ich bin others... -->
       Jens Morten Mikkelsen
     </h1>
-<!--    <p>
-      This is you.
-      &lt;!&ndash; fun place to show available information about the visitor 😈&ndash;&gt;
-    </p>-->
+    <section>
+      <h2>
+        Code! 💾
+      </h2>
+      <p>
+        GitHub!
+      </p>
+      
+      <article
+        v-if="repos"
+      >
+        <h3>
+          Repos
+        </h3>
+        <div class="grid my-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <GithubRepoTile
+            v-for="repo in repos.data.value"
+            :key="`gitRepo-${repo.id}`"
+            :repo
+          />
+        </div>
+      </article>
+      <article>
+        <h3>
+          Contributions
+        </h3>
+        <div class="grid my-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <a
+            href="https://github.com/nuxt/image/pull/2028"
+            class="sweep-bg flex flex-col border border-zinc-700 p-4 rounded-lg"
+          >
+            <p class="font-bold">
+              Nuxt/Image
+            </p>
+            <p>
+              Not yet released
+              <br>
+              look for umbraco and @jemomi
+            </p>
+          </a>
+        </div>
+      </article>
+    </section>
     <section>
       <h2>
         Music! 🎶
@@ -57,25 +96,6 @@
         </div>
       </article>
     </section>
-    <section>
-      <h2>
-        Code! 💾
-      </h2>
-      <p>
-        GitHub!
-      </p>
-      
-      <div
-        v-if="repos"
-        class="grid my-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
-      >
-        <GithubRepoTile
-          v-for="repo in repos.data.value"
-          :key="`gitRepo-${repo.id}`"
-          :repo
-        />
-      </div>
-    </section>
   </article>
 </template>
 
@@ -85,3 +105,20 @@
   
   const repos = useFetch('/api/github/repos')
 </script>
+
+<style scoped>
+.sweep-bg {
+  @apply relative overflow-hidden isolate;
+  
+  &::before {
+    @apply bg-zinc-700 absolute inset-0 -z-10;
+    content: "";
+    transform: translateX(-100%);
+    transition: transform 300ms ease;
+  }
+  
+  &:hover::before {
+    transform: translateX(0);
+  }
+}
+</style>
