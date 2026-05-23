@@ -29,7 +29,7 @@
         </h2>
         <div class="space-y-5 text-lg leading-8 text-zinc-700 dark:text-zinc-300">
           <p>
-            Udover kode interesserer jeg mig for musik, teknologi og gode samtaler om alt mellem himmel og jord. Jeg kan godt lide at fordybe mig, men jeg trives også med sparring, vidensdeling og samarbejde.
+            Udover kode interesserer jeg mig for musik, teknologi, co-op gaming og ræs, såsom rally og Formel 1 (og racer spil).
           </p>
           <p>
             Jeg er nysgerrig af natur og bliver hurtigt fanget af nye idéer, tekniske detaljer og muligheder for at gøre ting smartere eller mere enkle.
