@@ -23,19 +23,30 @@
         </NuxtLink>
       </nav>
       <div class="flex justify-end gap-8">
-        <div
-          v-if="loggedIn && user"
-          class="flex items-center gap-4"
-        >
-          <p>
-            Hello {{ user.name }}
-          </p>
-          <button
-            class="p-2 rounded-sm bg-blue-700 hover:bg-blue-900"
-            @click="clear"
+        <div class="flex items-center gap-4">
+          <NuxtLink
+            to="https://www.linkedin.com/in/jens-morten-mikkelsen-27893761/"
+            class="py-2 px-4 hover:bg-zinc-500/30 transition-colors rounded-lg"
           >
-            SignOut
-          </button>
+            <Icon name="simple-icons:linkedin" />
+          </NuxtLink>
+          <NuxtLink
+            to="https://github.com/jemomi"
+            class="py-2 px-4 hover:bg-zinc-500/30 transition-colors rounded-lg"
+          >
+            <Icon name="simple-icons:github" />
+          </NuxtLink>
+          <template v-if="loggedIn && user">
+            <p>
+              Hello {{ user.name }}
+            </p>
+            <button
+              class="p-2 rounded-sm bg-blue-700 hover:bg-blue-900"
+              @click="clear"
+            >
+              SignOut
+            </button>
+          </template>
         </div>
       </div>
     </div>
