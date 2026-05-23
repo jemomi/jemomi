@@ -1,15 +1,19 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  @apply dark:text-white dark:bg-zinc-800;
+  @apply bg-white text-zinc-950 antialiased dark:bg-zinc-950 dark:text-white;
 }
 
 h1 {
-  @apply text-2xl font-bold leading-loose;
+  @apply font-bold;
 }
 
 h2 {
-  @apply text-xl font-bold leading-loose;
+  @apply font-bold;
 }
 
 h3 {
-  @apply text-lg leading-relaxed;
+  @apply leading-relaxed;
 }

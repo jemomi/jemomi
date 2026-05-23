@@ -6,7 +6,7 @@
           :to="`/api/signaturgruppen-status/${statusLine.id}`"
           class="text-lg font-medium underline underline-offset-2 hover:no-underline"
         >
-          Event #{{ statusLine.id }}
+          Hændelse #{{ statusLine.id }}
         </NuxtLink>
         <p class="text-sm text-blue-900 dark:text-zinc-400">
           {{ formatDate(statusLine.received_at) }}
@@ -38,17 +38,17 @@ const eventTitle = computed(() => {
     return props.statusLine.payload.incident?.name
   }
 
-  return props.statusLine.payload.component?.name ?? props.statusLine.event_type ?? 'Unknown event'
+  return props.statusLine.payload.component?.name ?? props.statusLine.event_type ?? 'Ukendt hændelse'
 })
 
 const eventStatus = computed(() => {
   if ('incident' in props.statusLine.payload) {
-    return props.statusLine.payload.incident.status ?? props.statusLine.event_type ?? 'Unknown'
+    return props.statusLine.payload.incident.status ?? props.statusLine.event_type ?? 'Ukendt'
   }
 
   return props.statusLine.payload.component_update?.new_status
     ?? props.statusLine.payload.component.status
     ?? props.statusLine.event_type
-    ?? 'Unknown'
+    ?? 'Ukendt'
 })
 </script>

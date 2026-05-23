@@ -10,7 +10,7 @@
     {{ playlist.name }}
   </span>
   <span>
-    By:
+    Af:
     {{ playlist.owner.display_name }}
   </span>
   
