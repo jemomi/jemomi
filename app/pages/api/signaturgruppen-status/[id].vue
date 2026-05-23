@@ -10,7 +10,7 @@
       <p class="text-sm text-zinc-400">
         {{ new Date(data.received_at).toLocaleString() }}
       </p>
-      <p class="text-zinc-200">
+      <p class="text-zinc-400/80 dark:text-zinc-200">
         {{ getEventTitle(data) }}
       </p>
     </div>
@@ -56,13 +56,13 @@
         <h2 class="mb-2 font-medium">
           Payload
         </h2>
-        <pre class="overflow-x-auto rounded-xl border border-zinc-800 bg-zinc-950 p-4 text-xs">{{ data.payload }}</pre>
+        <pre class="overflow-x-auto rounded-xl border border-zinc-800 bg-zinc-950 p-4 text-xs text-white">{{ data.payload }}</pre>
       </div>
       <div>
         <h2 class="mb-2 font-medium">
           Headers
         </h2>
-        <pre class="overflow-x-auto rounded-xl border border-zinc-800 bg-zinc-950 p-4 text-xs">{{ data.headers }}</pre>
+        <pre class="overflow-x-auto rounded-xl border border-zinc-800 bg-zinc-950 p-4 text-xs text-white">{{ data.headers }}</pre>
       </div>
     </div>
   </div>

@@ -111,7 +111,7 @@
   @apply relative overflow-hidden isolate;
   
   &::before {
-    @apply bg-zinc-700 absolute inset-0 -z-10;
+    @apply bg-zinc-300 dark:bg-zinc-700 absolute inset-0 -z-10;
     content: "";
     transform: translateX(-100%);
     transition: transform 300ms ease;

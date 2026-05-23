@@ -1,10 +1,10 @@
 <template>
-  <footer class="bg-zinc-700 py-10">
+  <footer class="bg-zinc-300 dark:bg-zinc-700 py-10">
     <div class="container mx-auto">
       <h3>
         Integrations:
       </h3>
-      <ul class="flex flex-col gap-4 text-zinc-400">
+      <ul class="flex flex-col gap-4 dark:text-zinc-400">
         <li class="flex gap-4">
           <p class="font-bold">
             Neon-DB

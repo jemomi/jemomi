@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-xl border border-zinc-800 bg-zinc-900/60 p-4">
+  <div class="rounded-xl border border-zinc-800 bg-blue-200 dark:bg-zinc-900/60 p-4">
     <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
       <div class="space-y-1">
         <NuxtLink
@@ -8,14 +8,14 @@
         >
           Event #{{ statusLine.id }}
         </NuxtLink>
-        <p class="text-sm text-zinc-400">
+        <p class="text-sm text-blue-900 dark:text-zinc-400">
           {{ formatDate(statusLine.received_at) }}
         </p>
-        <p class="text-sm text-zinc-300">
+        <p class="text-sm text-blue-900/70 dark:text-zinc-300">
           {{ eventTitle }}
         </p>
       </div>
-      <div class="text-sm text-zinc-400">
+      <div class="text-sm text-blue-900 dark:">
         {{ eventStatus }}
       </div>
     </div>

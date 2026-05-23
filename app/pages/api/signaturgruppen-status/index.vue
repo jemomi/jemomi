@@ -4,7 +4,7 @@
       <h1 class="text-2xl font-semibold">
         SignaturGruppen status events
       </h1>
-      <p class="max-w-3xl text-zinc-300">
+      <p class="max-w-3xl dark:text-zinc-300">
         SignaturGruppen posts webhook events to this app. The events are stored in the database and forwarded to Discord using a formatted notification.
       </p>
     </div>

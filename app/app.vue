@@ -1,23 +1,23 @@
 <template>
   <NuxtRouteAnnouncer/>
-  <header class="bg-zinc-900">
+  <header class="bg-blue-400/30 dark:bg-zinc-900">
     <div class="flex container mx-auto justify-between py-2">
       <nav class="flex gap-8">
         <NuxtLink
           to="/"
-          class="p-4 hover:bg-zinc-500/50 transition-colors rounded-lg"
+          class="p-4 hover:bg-zinc-500/30 transition-colors rounded-lg"
         >
           Home
         </NuxtLink>
         <NuxtLink
           to="/api/signaturgruppen-status"
-          class="p-4 hover:bg-zinc-500/50 transition-colors rounded-lg"
+          class="p-4 hover:bg-zinc-500/30 transition-colors rounded-lg"
         >
           SignaturGruppen status
         </NuxtLink>
         <NuxtLink
           to="/me"
-          class="p-4 hover:bg-zinc-500/50 transition-colors rounded-lg"
+          class="p-4 hover:bg-zinc-500/30 transition-colors rounded-lg"
         >
           Me
         </NuxtLink>
