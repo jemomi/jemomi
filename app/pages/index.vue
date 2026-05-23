@@ -25,10 +25,10 @@
               Se mit arbejde
             </NuxtLink>
             <NuxtLink
-              to="#kontakt"
-              class="inline-flex items-center justify-center rounded-md border border-zinc-300 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:border-zinc-950 dark:border-zinc-700 dark:text-white dark:hover:border-white"
+              to="mailto:dkjemomi@gmail.com"
+              class="inline-flex items-center justify-center rounded-md border-2 border-emerald-600 px-5 py-3 text-sm font-semibold text-emerald-800 transition hover:bg-emerald-50 dark:border-emerald-400 dark:text-emerald-300 dark:hover:bg-emerald-400/10"
             >
-              Kontakt mig
+              Skriv til dkjemomi@gmail.com
             </NuxtLink>
             <NuxtLink
               to="https://github.com/jemomi"
@@ -245,16 +245,22 @@
           </p>
           <div class="flex flex-col gap-3 pt-2 sm:flex-row">
             <NuxtLink
+              to="mailto:dkjemomi@gmail.com"
+              class="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-zinc-200"
+            >
+              Skriv til dkjemomi@gmail.com
+            </NuxtLink>
+            <NuxtLink
               to="https://www.linkedin.com/in/jens-morten-mikkelsen-27893761/"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center justify-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-zinc-200"
+              class="inline-flex items-center justify-center gap-2 rounded-md border border-zinc-700 px-5 py-3 text-sm font-semibold text-zinc-200 transition hover:border-white hover:text-white"
             >
               <Icon
                 name="simple-icons:linkedin"
                 class="size-4"
               />
-              Kontakt mig
+              LinkedIn
             </NuxtLink>
             <NuxtLink
               to="https://github.com/jemomi"

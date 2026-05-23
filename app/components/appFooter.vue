@@ -10,7 +10,13 @@
         </p>
       </div>
 
-      <div class="flex items-center gap-2">
+      <div class="flex flex-wrap items-center gap-2 md:justify-end">
+        <NuxtLink
+          to="mailto:dkjemomi@gmail.com"
+          class="rounded-md bg-zinc-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
+        >
+          dkjemomi@gmail.com
+        </NuxtLink>
         <NuxtLink
           to="https://www.linkedin.com/in/jens-morten-mikkelsen-27893761/"
           target="_blank"
