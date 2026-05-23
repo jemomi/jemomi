@@ -5,7 +5,7 @@
   >
     <div class="space-y-2">
       <h1 class="text-2xl font-semibold">
-        Event #{{ data.id }}
+        Hændelse #{{ data.id }}
       </h1>
       <p class="text-sm text-zinc-400">
         {{ new Date(data.received_at).toLocaleString() }}
@@ -22,10 +22,10 @@
       <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div>
           <h2 class="font-medium">
-            Re-send this event to Discord
+            Send denne hændelse til Discord igen
           </h2>
           <p class="text-sm text-zinc-400">
-            Sends a formatted test notification built from this stored event.
+            Sender en formateret testbesked baseret på den gemte hændelse.
           </p>
         </div>
         <button
@@ -33,7 +33,7 @@
           :disabled="isSendingEventTest"
           @click="sendEventTest"
         >
-          {{ isSendingEventTest ? 'Sending…' : 'Send this event as test' }}
+          {{ isSendingEventTest ? 'Sender...' : 'Send som test' }}
         </button>
       </div>
       <p
@@ -47,7 +47,7 @@
         :to="eventTestUrl"
         class="mt-2 inline-block text-sm underline underline-offset-2 hover:no-underline"
       >
-        Open created event
+        Åbn oprettet hændelse
       </NuxtLink>
     </div>
 
@@ -71,7 +71,7 @@
     class="container mx-auto"
   >
     <h1 class="text-red-700">
-      Error: {{ error.status }} - {{ error.statusMessage }}
+      Fejl: {{ error.status }} - {{ error.statusMessage }}
     </h1>
     <p>
       {{ error.message }}
@@ -97,7 +97,7 @@ const getEventTitle = (statusLine: Status) => {
     return statusLine.payload.incident.name
   }
 
-  return statusLine.payload.component.name ?? statusLine.event_type ?? 'Unknown event'
+  return statusLine.payload.component.name ?? statusLine.event_type ?? 'Ukendt hændelse'
 }
 
 const sendEventTest = async () => {
@@ -118,13 +118,13 @@ const sendEventTest = async () => {
     })
 
     eventTestMessage.value = response.createdRecordId
-      ? `Discord test notification sent and stored as event #${response.createdRecordId}.`
-      : 'Discord test notification sent.'
+      ? `Testbesked sendt til Discord og gemt som hændelse #${response.createdRecordId}.`
+      : 'Testbesked sendt til Discord.'
     eventTestUrl.value = response.eventUrl ?? ''
   } catch (testError) {
     eventTestMessage.value = testError instanceof Error
       ? testError.message
-      : 'Failed to send Discord test notification.'
+      : 'Kunne ikke sende testbesked til Discord.'
   } finally {
     isSendingEventTest.value = false
   }

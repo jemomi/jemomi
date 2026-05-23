@@ -2,10 +2,10 @@
   <div class="container mx-auto space-y-6">
     <div class="space-y-2">
       <h1 class="text-2xl font-semibold">
-        SignaturGruppen status events
+        SignaturGruppen statushændelser
       </h1>
       <p class="max-w-3xl dark:text-zinc-300">
-        SignaturGruppen posts webhook events to this app. The events are stored in the database and forwarded to Discord using a formatted notification.
+        SignaturGruppen sender webhook-hændelser til denne app. Hændelserne gemmes i databasen og videresendes til Discord som en formateret besked.
       </p>
     </div>
 
@@ -16,10 +16,10 @@
       <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div>
           <h2 class="font-medium">
-            Test Discord notification
+            Test Discord-besked
           </h2>
           <p class="text-sm text-zinc-400">
-            Sends a built-in sample notification to Discord so you can verify formatting without waiting for a real incident.
+            Sender en indbygget testbesked til Discord, så formateringen kan kontrolleres uden at vente på en rigtig hændelse.
           </p>
         </div>
         <button
@@ -27,7 +27,7 @@
           :disabled="isSendingFixtureTest"
           @click="sendFixtureTest"
         >
-          {{ isSendingFixtureTest ? 'Sending…' : 'Send sample test' }}
+          {{ isSendingFixtureTest ? 'Sender...' : 'Send test' }}
         </button>
       </div>
       <p
@@ -41,12 +41,12 @@
         :to="fixtureTestUrl"
         class="mt-2 inline-block text-sm underline underline-offset-2 hover:no-underline"
       >
-        Open created event
+        Åbn oprettet hændelse
       </NuxtLink>
     </div>
 
     <p v-if="pending">
-      Loading events...
+      Indlæser hændelser...
     </p>
 
     <div
@@ -90,13 +90,13 @@ const sendFixtureTest = async () => {
     })
 
     fixtureTestMessage.value = response.createdRecordId
-      ? `Sample Discord notification sent and stored as event #${response.createdRecordId}.`
-      : 'Sample Discord notification sent.'
+      ? `Testbesked sendt til Discord og gemt som hændelse #${response.createdRecordId}.`
+      : 'Testbesked sendt til Discord.'
     fixtureTestUrl.value = response.eventUrl ?? ''
   } catch (testError) {
     fixtureTestMessage.value = testError instanceof Error
       ? testError.message
-      : 'Failed to send sample Discord notification.'
+      : 'Kunne ikke sende testbesked til Discord.'
   } finally {
     isSendingFixtureTest.value = false
   }
