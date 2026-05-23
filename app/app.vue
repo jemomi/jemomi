@@ -4,7 +4,7 @@
     <div class="container mx-auto flex flex-col gap-3 px-4 py-3 md:flex-row md:items-center md:justify-between">
       <NuxtLink
         to="/"
-        class="text-sm font-semibold text-zinc-950 dark:text-white"
+        class="text-sm font-semibold text-zinc-950 underline-offset-4 hover:underline dark:text-white"
       >
         Jens Morten Mikkelsen
       </NuxtLink>
@@ -14,12 +14,6 @@
           class="flex flex-wrap gap-1"
           aria-label="Primær navigation"
         >
-          <NuxtLink
-            to="/"
-            class="rounded-md px-3 py-2 text-sm font-medium text-zinc-700 transition hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
-          >
-            Forside
-          </NuxtLink>
           <NuxtLink
             to="/me"
             class="rounded-md px-3 py-2 text-sm font-medium text-zinc-700 transition hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"

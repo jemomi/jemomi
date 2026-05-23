@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto space-y-6">
+  <div class="container mx-auto space-y-6 px-4 py-16">
     <div class="space-y-2">
       <h1 class="text-2xl font-semibold">
         SignaturGruppen statushændelser

@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="data"
-    class="container mx-auto space-y-6"
+    class="container mx-auto space-y-6 px-4 py-16"
   >
     <div class="space-y-2">
       <h1 class="text-2xl font-semibold">
@@ -68,7 +68,7 @@
   </div>
   <div
     v-else-if="error"
-    class="container mx-auto"
+    class="container mx-auto px-4 py-16"
   >
     <h1 class="text-red-700">
       Fejl: {{ error.status }} - {{ error.statusMessage }}
