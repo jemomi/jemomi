@@ -96,6 +96,20 @@
             Hvad jeg arbejder med
           </h2>
         </div>
+        <div class="mt-6 max-w-4xl">
+          <h3 class="text-sm font-semibold uppercase tracking-normal text-zinc-500 dark:text-zinc-400">
+            Teknologier
+          </h3>
+          <ul class="mt-3 flex flex-wrap gap-2">
+            <li
+              v-for="technology in technologies"
+              :key="technology"
+              class="rounded-md border border-zinc-200 bg-zinc-50 px-3 py-2 text-sm font-medium text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300"
+            >
+              {{ technology }}
+            </li>
+          </ul>
+        </div>
         <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           <article
             v-for="skill in skills"
@@ -243,6 +257,9 @@
           <p class="leading-8 text-zinc-400">
             Jeg hjælper gerne med konkrete, afgrænsede opgaver inden for frontend, Nuxt/Vue, CMS, integrationer, teknisk sparring og mindre full-stack løsninger.
           </p>
+          <p class="leading-8 text-zinc-400">
+            Skriv gerne kort hvad du har brug for hjælp til, hvilken løsning det handler om, og om der er en konkret deadline.
+          </p>
           <div class="flex flex-col gap-3 pt-2 sm:flex-row">
             <NuxtLink
               to="mailto:dkjemomi@gmail.com"
@@ -305,6 +322,21 @@ const highlights = [
     title: 'Praktisk samarbejde',
     text: 'Klare opgaver, teknisk sparring og løsninger, der kan vedligeholdes.',
   },
+]
+
+const technologies = [
+  'Nuxt',
+  'Vue',
+  'TypeScript',
+  'Tailwind',
+  'Vite',
+  'HTML',
+  'CSS',
+  'JavaScript',
+  'C#',
+  'CMS',
+  'API’er',
+  'Integrationer',
 ]
 
 const skills = [
