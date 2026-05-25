@@ -1,14 +1,14 @@
 <template>
-  <LazyNuxtImg
-    v-if="image"
-    :src="image.url"
-    :width="image.width"
-    :height="image.height"
-    class="mb-2 max-w-36 rounded-[100%] group-hover:rounded-none transition-all duration-200 object-cover aspect-square"
-  />
-  <span class="underline underline-offset-2 group-hover:no-underline">
-    {{ artist.name }}
-  </span>
+    <LazyNuxtImg
+      v-if="image"
+      :src="image.url"
+      :width="image.width"
+      :height="image.height"
+      class="w-full mb-2 object-cover aspect-square transition duration-200 ease-in-out filter-image-ghost group-hover:filter-none group-hover:opacity-100"
+    />
+    <span class="underline underline-offset-2 group-hover:no-underline">
+      {{ artist.name }}
+    </span>
 </template>
 
 <script setup lang="ts">

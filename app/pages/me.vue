@@ -113,7 +113,7 @@
             <a
               v-for="artist in favoriteArtists.data.value"
               :key="artist.id"
-              class="group flex flex-col items-center rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-center shadow-sm dark:border-zinc-800 dark:bg-zinc-900"
+              class="group flex flex-col items-center overflow-hidden rounded-lg border border-zinc-200 bg-zinc-50 pb-4 text-center shadow-sm dark:border-zinc-800 dark:bg-zinc-900"
               :href="artist.external_urls.spotify"
               target="_blank"
               rel="noopener noreferrer"
@@ -138,7 +138,7 @@
             <a
               v-for="playlist in playlists.data.value"
               :key="playlist.id"
-              class="group flex flex-col items-center rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-center shadow-sm dark:border-zinc-800 dark:bg-zinc-900"
+              class="group flex flex-col items-center overflow-hidden rounded-lg border border-zinc-200 bg-zinc-50 pb-4 text-center shadow-sm dark:border-zinc-800 dark:bg-zinc-900"
               :href="playlist.external_urls.spotify"
               target="_blank"
               rel="noopener noreferrer"
