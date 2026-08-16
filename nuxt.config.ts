@@ -9,6 +9,7 @@ export default defineNuxtConfig({
         '@nuxt/image',
         '@nuxtjs/tailwindcss',
         'nuxt-auth-utils',
+        '@vercel/analytics',
     ],
 
     css: ['~/assets/css/main.css'],
