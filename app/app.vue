@@ -15,6 +15,12 @@
           aria-label="Primær navigation"
         >
           <NuxtLink
+            to="/services"
+            class="rounded-md px-3 py-2 text-sm font-medium text-zinc-700 transition hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
+          >
+            Tjenester
+          </NuxtLink>
+          <NuxtLink
             to="/me"
             class="rounded-md px-3 py-2 text-sm font-medium text-zinc-700 transition hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
           >
