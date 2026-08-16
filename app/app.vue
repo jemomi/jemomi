@@ -35,6 +35,7 @@
         </nav>
 
         <div class="flex items-center gap-2">
+          <ColorModeToggle />
           <NuxtLink
             to="https://www.linkedin.com/in/jens-morten-mikkelsen-27893761/"
             target="_blank"
