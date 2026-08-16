@@ -7,23 +7,23 @@
             Tjenester
           </p>
           <h1 class="text-4xl font-bold leading-tight text-zinc-950 dark:text-white md:text-5xl">
-            Praktisk hjælp til annoncering, tracking og tekniske webløsninger
+            Praktisk hjælp til annoncering, hjemmesider, sporing og tekniske løsninger
           </h1>
           <p class="max-w-3xl text-lg leading-8 text-zinc-700 dark:text-zinc-300">
             Jeg hjælper med konkrete digitale opgaver, hvor marketing, data og webudvikling mødes. Fokus er på tydelige forbedringer, brugbar sporing og løsninger, der kan bruges i praksis.
           </p>
           <div class="flex flex-col gap-3 sm:flex-row">
             <NuxtLink
-              to="mailto:dkjemomi@gmail.com?subject=Foresp%C3%B8rgsel%20om%20digital%20hj%C3%A6lp"
+              :to="contactHref()"
               class="inline-flex items-center justify-center rounded-md bg-zinc-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
             >
-              Skriv til dkjemomi@gmail.com
+              Skriv til {{ contactEmail }}
             </NuxtLink>
             <NuxtLink
               to="#tjenester"
               class="inline-flex items-center justify-center rounded-md border border-zinc-300 px-6 py-3 text-sm font-semibold text-zinc-950 transition hover:border-zinc-950 dark:border-zinc-700 dark:text-white dark:hover:border-white"
             >
-              Se tjenester
+              Se områder
             </NuxtLink>
           </div>
         </div>
@@ -36,7 +36,7 @@
             Send en kort besked med hvad du har brug for hjælp til, hvilken løsning det handler om, og om der er noget, der haster.
           </p>
           <NuxtLink
-            to="mailto:dkjemomi@gmail.com?subject=Foresp%C3%B8rgsel%20om%20digital%20hj%C3%A6lp"
+            :to="contactHref()"
             class="mt-5 inline-flex w-full items-center justify-center rounded-md bg-emerald-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
           >
             Kontakt mig
@@ -52,32 +52,61 @@
       <div class="container mx-auto px-4">
         <div class="max-w-3xl space-y-4">
           <h2 class="text-3xl font-bold text-zinc-950 dark:text-white">
-            Det kan jeg hjælpe med
+            Områder jeg kan hjælpe med
           </h2>
           <p class="leading-8 text-zinc-600 dark:text-zinc-400">
-            Her er typiske opgaver, jeg kan tage fat på. Hvis din opgave ligger mellem flere af områderne, er det helt normalt.
+            Opgaverne er delt op efter område. Mange opgaver ligger naturligt på tværs, for eksempel når annoncer, sporing og landingssider skal fungere bedre sammen.
           </p>
         </div>
 
-        <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          <article
-            v-for="service in services"
-            :key="service.title"
-            class="flex flex-col rounded-lg border border-zinc-200 bg-zinc-50 p-6 dark:border-zinc-800 dark:bg-zinc-900"
+        <div class="mt-10 space-y-12">
+          <section
+            v-for="section in serviceSections"
+            :id="section.id"
+            :key="section.title"
+            class="scroll-mt-28"
           >
-            <h3 class="text-lg font-semibold text-zinc-950 dark:text-white">
-              {{ service.title }}
-            </h3>
-            <p class="mt-3 leading-7 text-zinc-600 dark:text-zinc-400">
-              {{ service.text }}
-            </p>
-            <NuxtLink
-              :to="`mailto:dkjemomi@gmail.com?subject=${service.mailSubject}`"
-              class="mt-5 inline-flex text-sm font-semibold text-emerald-700 underline-offset-4 hover:underline dark:text-emerald-400"
-            >
-              Kontakt om denne opgave
-            </NuxtLink>
-          </article>
+            <div class="grid gap-6 lg:grid-cols-[18rem_1fr] lg:items-start">
+              <div class="space-y-3">
+                <p class="text-sm font-semibold uppercase tracking-normal text-emerald-700 dark:text-emerald-400">
+                  {{ section.label }}
+                </p>
+                <h3 class="text-2xl font-bold text-zinc-950 dark:text-white">
+                  {{ section.title }}
+                </h3>
+                <p class="leading-7 text-zinc-600 dark:text-zinc-400">
+                  {{ section.text }}
+                </p>
+              </div>
+
+              <div class="grid gap-4 md:grid-cols-2">
+                <article
+                  v-for="service in section.services"
+                  :key="service.title"
+                  class="flex flex-col rounded-lg border border-zinc-200 bg-zinc-50 p-6 dark:border-zinc-800 dark:bg-zinc-900"
+                >
+                  <p
+                    v-if="service.badge"
+                    class="mb-3 inline-flex w-fit rounded-md bg-emerald-100 px-2.5 py-1 text-xs font-semibold text-emerald-800 dark:bg-emerald-400/10 dark:text-emerald-300"
+                  >
+                    {{ service.badge }}
+                  </p>
+                  <h4 class="text-lg font-semibold text-zinc-950 dark:text-white">
+                    {{ service.title }}
+                  </h4>
+                  <p class="mt-3 leading-7 text-zinc-600 dark:text-zinc-400">
+                    {{ service.text }}
+                  </p>
+                  <NuxtLink
+                    :to="contactHref(service.contactSubject ?? service.title)"
+                    class="mt-5 inline-flex text-sm font-semibold text-emerald-700 underline-offset-4 hover:underline dark:text-emerald-400"
+                  >
+                    {{ service.contactText ?? 'Kontakt om denne opgave' }}
+                  </NuxtLink>
+                </article>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </section>
@@ -123,10 +152,10 @@
           </p>
           <div class="flex flex-col gap-3 pt-2 sm:flex-row">
             <NuxtLink
-              to="mailto:dkjemomi@gmail.com?subject=Foresp%C3%B8rgsel%20om%20digital%20hj%C3%A6lp"
+              :to="contactHref()"
               class="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-zinc-200"
             >
-              Skriv til dkjemomi@gmail.com
+              Skriv til {{ contactEmail }}
             </NuxtLink>
             <NuxtLink
               to="https://www.linkedin.com/in/jens-morten-mikkelsen-27893761/"
@@ -148,56 +177,121 @@
 </template>
 
 <script setup lang="ts">
+import type {ServiceSection} from '~/types/services';
+
 useHead({
   title: 'Tjenester - Jens Morten Mikkelsen',
   meta: [
     {
       name: 'description',
-      content: 'Tjenester inden for Google Ads, Google Analytics, sporing, konverteringsgennemgang, teknisk webhjælp, automatisering og digital sparring.',
+      content: 'Tjenester inden for Google Ads, Google Analytics, sporing, hjemmeside, webshop, CMS, SEO, automatisering og digital sparring.',
     },
   ],
 })
 
-const services = [
+const contactEmail = 'dkjemomi@gmail.com'
+
+const contactHref = (subject = 'Forespørgsel om digital hjælp') => `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}`
+
+const serviceSections: ServiceSection[] = [
   {
-    title: 'Google Ads - gennemgang og optimering',
-    text: 'Gennemgang af eksisterende kampagner, søgetermer, budget, målretning, annoncer og landingssider. Fokus er at få mere ud af det annoncebudget, der allerede bliver brugt.',
-    mailSubject: 'Google%20Ads%20-%20gennemgang%20og%20optimering',
+    id: 'google',
+    label: 'Google',
+    title: 'Annoncering, Analytics og sporing',
+    text: 'Hjælp til at få bedre overblik over annoncer, konverteringer og den værdi, din hjemmeside skaber.',
+    services: [
+      {
+        title: 'Google Ads - gratis forundersøgelse',
+        text: 'En kort indledende gennemgang af konto, kampagnestruktur og tydelige forbedringsmuligheder, før vi aftaler et egentligt forløb.',
+        badge: 'Gratis forundersøgelse',
+        contactSubject: 'Google Ads - gratis forundersøgelse',
+        contactText: 'Spørg om gratis forundersøgelse',
+      },
+      {
+        title: 'Google Ads - gennemgang og optimering',
+        text: 'Gennemgang af eksisterende kampagner, søgetermer, budget, målretning, annoncer og landingssider med fokus på at få mere ud af det annoncebudget, der allerede bliver brugt.',
+      },
+      {
+        title: 'Google Ads - opsætning fra bunden',
+        text: 'Opsætning af nye kampagner, konverteringsmål, søgeord, annoncer og grundlæggende struktur for virksomheder, der ikke allerede annoncerer.',
+      },
+      {
+        title: 'Google Analytics og konverteringssporing',
+        text: 'Opsætning eller gennemgang af GA4, Google Tag Manager og konverteringssporing, så du kan se, hvad hjemmeside og annoncer skaber af værdi.',
+      },
+      {
+        title: 'Sporingsfejlfinding',
+        text: 'Gennemgang af opsætningen, når køb, formularer, klik eller andre vigtige handlinger ikke bliver registreret korrekt.',
+      },
+    ],
   },
   {
-    title: 'Google Ads - opsætning fra bunden',
-    text: 'Opsætning af nye kampagner, konverteringsmål, søgeord, annoncer og grundlæggende struktur for virksomheder, der ikke allerede annoncerer.',
-    mailSubject: 'Google%20Ads%20-%20ops%C3%A6tning%20fra%20bunden',
+    id: 'website',
+    label: 'Hjemmeside',
+    title: 'Hjemmeside, webshop og CMS',
+    text: 'Praktiske forbedringer af sider, flows og tekniske detaljer, der påvirker henvendelser, salg og daglig drift.',
+    services: [
+      {
+        title: 'Hjemmeside- og konverteringsgennemgang',
+        text: 'En praktisk gennemgang af hvor annoncerne sender folk hen, om næste handling er tydelig, og om tekniske eller indholdsmæssige ting gør det sværere at få henvendelser eller salg.',
+      },
+      {
+        title: 'Webshop- og checkoutgennemgang',
+        text: 'Gennemgang af produktsider, kurv, checkout, formularer og vigtige målepunkter, så det bliver lettere at finde friktion og tabte salg.',
+      },
+      {
+        title: 'CMS og indholdsstruktur',
+        text: 'Hjælp til redaktørvenlige sider, landingssider, indholdstyper og struktur, så indhold er nemmere at vedligeholde og bruge aktivt.',
+      },
+      {
+        title: 'Teknisk webhjælp og mindre ændringer',
+        text: 'Små rettelser, nye landingssider, formularer, integrationer, sporingsscripts, DNS, domæneopsætning og andre opgaver mellem marketing og webudvikling.',
+      },
+    ],
   },
   {
-    title: 'Google Analytics og sporing',
-    text: 'Opsætning eller gennemgang af GA4, Google Tag Manager og konverteringssporing, så du kan se, hvad hjemmeside og annoncer skaber af værdi.',
-    mailSubject: 'Google%20Analytics%20og%20sporing',
+    id: 'seo',
+    label: 'SEO',
+    title: 'Struktur, indhold og teknisk synlighed',
+    text: 'Hjælp til de tekniske og strukturelle dele af SEO, hvor udvikling og indhold mødes.',
+    services: [
+      {
+        title: 'Rich content og schema',
+        text: 'Opsætning eller gennemgang af strukturerede data, schema, FAQ-indhold og andre elementer, der kan gøre sider tydeligere for søgemaskiner.',
+      },
+      {
+        title: 'Sidearkitektur og intern linking',
+        text: 'Gennemgang af navigation, landingssider, URL-struktur og interne links, så vigtige sider bliver nemmere at finde og forstå.',
+      },
+      {
+        title: 'Teknisk SEO-gennemgang',
+        text: 'Praktisk gennemgang af indeksering, metadata, redirects, hastighed, mobilvisning og tekniske forhold, der kan påvirke synligheden.',
+      },
+      {
+        title: 'Indholds- og landingssideprioritering',
+        text: 'En prioriteret vurdering af hvilke sider der bør forbedres, samles, udvides eller oprettes først.',
+      },
+    ],
   },
   {
-    title: 'Tracking-fejlfinding',
-    text: 'Gennemgang af opsætningen, når køb, formularer, klik eller andre vigtige handlinger ikke bliver registreret korrekt.',
-    mailSubject: 'Tracking-fejlfinding',
-  },
-  {
-    title: 'Hjemmeside- og konverteringsgennemgang',
-    text: 'En praktisk gennemgang af hvor annoncerne sender folk hen, om næste handling er tydelig, og om tekniske eller indholdsmæssige ting gør det sværere at få henvendelser eller salg.',
-    mailSubject: 'Hjemmeside-%20og%20konverteringsgennemgang',
-  },
-  {
-    title: 'Teknisk webhjælp og mindre ændringer',
-    text: 'Små rettelser, nye landingssider, formularer, integrationer, sporingsscripts, DNS, domæneopsætning og andre opgaver mellem marketing og webudvikling.',
-    mailSubject: 'Teknisk%20webhj%C3%A6lp%20og%20mindre%20%C3%A6ndringer',
-  },
-  {
-    title: 'Automatisering og simple interne værktøjer',
-    text: 'Små specialløsninger, der sparer manuelt arbejde. Det kan være uploadportaler, formularflows, automatiske mails, dataopsamling eller simple webværktøjer.',
-    mailSubject: 'Automatisering%20og%20simple%20interne%20v%C3%A6rkt%C3%B8jer',
-  },
-  {
-    title: 'Digital gennemgang og ekstra vurdering',
-    text: 'En samlet gennemgang af Google Ads, Analytics og hjemmeside med en kort prioriteret liste over hvad der fungerer, hvad der bør ændres, og hvad der ikke er værd at bruge tid på.',
-    mailSubject: 'Digital%20gennemgang%20og%20ekstra%20vurdering',
+    id: 'automation',
+    label: 'Mere',
+    title: 'Automatisering, integrationer og sparring',
+    text: 'Små løsninger og konkrete vurderinger, der kan spare tid eller give bedre beslutningsgrundlag.',
+    services: [
+      {
+        title: 'Automatisering og simple interne værktøjer',
+        text: 'Små specialløsninger, der sparer manuelt arbejde. Det kan være uploadportaler, formularforløb, automatiske mails, dataopsamling eller simple webværktøjer.',
+      },
+      {
+        title: 'Integrationer og dataopsamling',
+        text: 'Hjælp til at forbinde formularer, regneark, APIer, mailsystemer og andre værktøjer, så data lander det rigtige sted.',
+      },
+      {
+        title: 'Digital gennemgang og ekstra vurdering',
+        text: 'En samlet gennemgang af Google Ads, Analytics og hjemmeside med en kort prioriteret liste over hvad der fungerer, hvad der bør ændres, og hvad der ikke er værd at bruge tid på.',
+      },
+    ],
   },
 ]
 
