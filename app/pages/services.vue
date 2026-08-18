@@ -7,7 +7,7 @@
             Tjenester
           </p>
           <h1 class="text-4xl font-bold leading-tight text-zinc-950 dark:text-white md:text-5xl">
-            Få mere ud af dine annoncer, din sporing og din hjemmeside
+            Få mere ud af dine annoncer, din tracking og din hjemmeside
           </h1>
           <p class="max-w-3xl text-lg leading-8 text-zinc-700 dark:text-zinc-300">
             Jeg hjælper med konkrete digitale opgaver, hvor marketing, data og webudvikling hænger sammen. Fokus er på at finde det, der faktisk bremser henvendelser, salg eller overblik.
@@ -36,7 +36,7 @@
             Start med et hurtigt tjek
           </h2>
           <p class="mt-3 leading-7 text-zinc-600 dark:text-zinc-400">
-            Særligt relevant hvis du allerede bruger penge på Google Ads, men er i tvivl om kampagner, sporing eller landingssider arbejder godt nok sammen.
+            Særligt relevant hvis du allerede bruger penge på Google Ads, men er i tvivl om kampagner, tracking eller landingssider arbejder godt nok sammen.
           </p>
           <NuxtLink
             :to="contactHref('Gratis forundersøgelse')"
@@ -58,7 +58,7 @@
             Områder jeg kan hjælpe med
           </h2>
           <p class="leading-8 text-zinc-600 dark:text-zinc-400">
-            Opgaverne er delt op efter område, så det er nemt at finde det relevante. Mange opgaver ligger naturligt på tværs, for eksempel når annoncer, sporing og landingssider skal fungere bedre sammen.
+            Opgaverne er delt op efter område, så det er nemt at finde det relevante. Mange opgaver ligger naturligt på tværs, for eksempel når annoncer, tracking og landingssider skal fungere bedre sammen.
           </p>
         </div>
 
@@ -169,7 +169,7 @@ useHead({
   meta: [
     {
       name: 'description',
-      content: 'Tjenester inden for Google Ads, Google Analytics, sporing, hjemmeside, webshop, CMS, Umbraco, SEO, automatisering og digital sparring.',
+      content: 'Tjenester inden for Google Ads, Google Analytics, tracking, hjemmeside, webshop, CMS, Umbraco, SEO, automatisering og digital sparring.',
     },
   ],
 })
@@ -182,12 +182,12 @@ const serviceSections: ServiceSection[] = [
   {
     id: 'google',
     label: 'Google',
-    title: 'Google Ads, Analytics og sporing',
+    title: 'Google Ads, Analytics og tracking',
     text: 'Hjælp til at få bedre overblik over annoncebudget, konverteringer og den værdi, din hjemmeside skaber.',
     services: [
       {
         title: 'Google Ads - gratis forundersøgelse',
-        text: 'En kort indledende gennemgang af konto, kampagnestruktur, sporing og landingssider, så du får en konkret vurdering af de mest oplagte forbedringer.',
+        text: 'En kort indledende gennemgang af konto, kampagnestruktur, tracking og landingssider, så du får en konkret vurdering af de mest oplagte forbedringer.',
         badge: 'Gratis forundersøgelse',
         contactSubject: 'Google Ads - gratis forundersøgelse',
         contactText: 'Spørg om gratis forundersøgelse',
@@ -201,15 +201,15 @@ const serviceSections: ServiceSection[] = [
         text: 'Opsætning af nye kampagner, konverteringsmål, søgeord, annoncer og grundlæggende struktur for virksomheder, der ikke allerede annoncerer.',
       },
       {
-        title: 'Google Analytics og konverteringssporing',
-        text: 'Opsætning eller gennemgang af GA4, Google Tag Manager og konverteringssporing, så du kan se, hvilke henvendelser, køb eller handlinger hjemmesiden skaber.',
+        title: 'Google Analytics og konverteringstracking',
+        text: 'Opsætning eller gennemgang af GA4, Google Tag Manager og konverteringstracking, så du kan se, hvilke henvendelser, køb eller handlinger hjemmesiden skaber.',
       },
       {
-        title: 'Sporingsfejlfinding',
+        title: 'Tracking-fejlfinding',
         text: 'Gennemgang af opsætningen, når køb, formularer, klik, opkald eller andre vigtige handlinger ikke bliver registreret korrekt.',
       },
       {
-        title: 'Samtykke og annoncesporing',
+        title: 'Samtykke og annoncetracking',
         text: 'Teknisk gennemgang af om cookie-banner, samtykke, tags og konverteringer spiller rigtigt sammen, så målingen bliver så brugbar som muligt.',
       },
     ],
@@ -241,7 +241,7 @@ const serviceSections: ServiceSection[] = [
       },
       {
         title: 'Teknisk webhjælp og mindre ændringer',
-        text: 'Små rettelser, formularer, integrationer, sporingsscripts, DNS, domæneopsætning og andre opgaver mellem marketing og webudvikling.',
+        text: 'Små rettelser, formularer, integrationer, tracking-scripts, DNS, domæneopsætning og andre opgaver mellem marketing og webudvikling.',
       },
     ],
   },
@@ -316,7 +316,7 @@ const serviceSections: ServiceSection[] = [
       },
       {
         title: 'Digital gennemgang og ekstra vurdering',
-        text: 'En samlet gennemgang af Google Ads, Analytics, sporing og hjemmeside med en kort prioriteret liste over hvad der fungerer, hvad der bør ændres, og hvad der ikke er værd at bruge tid på.',
+        text: 'En samlet gennemgang af Google Ads, Analytics, tracking og hjemmeside med en kort prioriteret liste over hvad der fungerer, hvad der bør ændres, og hvad der ikke er værd at bruge tid på.',
       },
     ],
   },
@@ -331,7 +331,7 @@ const steps = [
   {
     label: '02',
     title: 'Forundersøgelse',
-    text: 'Når det giver mening, starter vi med et hurtigt tjek af problem, konto, sporing eller hjemmeside.',
+    text: 'Når det giver mening, starter vi med et hurtigt tjek af problem, konto, tracking eller hjemmeside.',
   },
   {
     label: '03',
