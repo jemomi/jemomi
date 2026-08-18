@@ -187,7 +187,7 @@ const serviceSections: ServiceSection[] = [
     services: [
       {
         title: 'Google Ads - gratis forundersøgelse',
-        text: 'En kort indledende gennemgang af konto, kampagnestruktur, tracking og landingssider, så du får en konkret vurdering af de mest oplagte forbedringer.',
+        text: 'En kort indledende gennemgang af konto, kampagnestruktur, tracking og landingssider, så du får en konkret vurdering af de mest oplagte forbedringer. (kræver adgang til google-ads konto)',
         badge: 'Gratis forundersøgelse',
         contactSubject: 'Google Ads - gratis forundersøgelse',
         contactText: 'Spørg om gratis forundersøgelse',
@@ -222,7 +222,7 @@ const serviceSections: ServiceSection[] = [
     services: [
       {
         title: 'Hjemmeside - gratis forundersøgelse',
-        text: 'En kort indledende gennemgang af hjemmeside, landingssider, næste handling, tekniske problemer og de mest oplagte forbedringer for flere henvendelser eller salg.',
+        text: 'En kort indledende gennemgang af hjemmeside, hastigheds-tjek, accessibility, næste handling, tekniske problemer og de mest oplagte forbedringer for flere henvendelser eller salg.',
         badge: 'Gratis forundersøgelse',
         contactSubject: 'Hjemmeside - gratis forundersøgelse',
         contactText: 'Spørg om gratis hjemmeside-tjek',
