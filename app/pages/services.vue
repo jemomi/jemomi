@@ -36,7 +36,7 @@
             Start med en gratis gennemgang
           </h2>
           <p class="mt-3 leading-7 text-zinc-600 dark:text-zinc-400">
-            Særligt relevant hvis du allerede bruger penge på Google Ads, men er i tvivl om kampagner, tracking eller landingssider arbejder godt nok sammen.
+            Vælg op til 2 gratis gennemgange af fx Google Ads, tracking, hjemmeside, SEO eller checkout. Har du et andet område, du gerne vil have vurderet, er du også velkommen til at spørge.
           </p>
           <NuxtLink
             :to="contactHref('Gratis gennemgang')"
