@@ -14,7 +14,7 @@
               Hvad du kan forvente
             </h2>
             <p class="mt-3 text-sm leading-6 text-zinc-700 dark:text-zinc-300">
-              En gratis gennemgang er et indledende tjek, ikke en detaljeret audit eller rapport.
+              En gratis gennemgang er et indledende tjek med fokus på de vigtigste muligheder og problemer – ikke en detaljeret audit eller rapport. Du kan som udgangspunkt få op til 2 gratis gennemgange. Ønsker du flere, aftaler vi sammen, hvad der giver mening.
             </p>
           </div>
           <ul class="grid gap-3 sm:grid-cols-2">
@@ -31,6 +31,9 @@
             </li>
           </ul>
         </div>
+        <p class="mt-3 text-xs italic leading-6 text-zinc-700 dark:text-zinc-300">
+          Jeg forbeholder mig retten til til enhver tid at afvise eller afslutte en gratis gennemgang, også efter den er påbegyndt.
+        </p>
       </div>
     </div>
   </section>
@@ -39,11 +42,11 @@
 <script setup lang="ts">
 
 const freeReviewScope = [
-  'Kort gennemgang af det relevante område',
-  '2-4 vigtigste observationer',
+  'Kort gennemgang af de mest relevante områder',
+  '2-4 vigtigste observationer samlet',
   'Vurdering af mulig effekt og prioritet',
   'Forslag til næste skridt',
-  'Eventuelt tilbud på løsning eller videre gennemgang',
+  'Eventuelt tilbud på løsning eller en mere grundig gennemgang',
 ]
 </script>
 
