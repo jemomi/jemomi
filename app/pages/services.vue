@@ -33,7 +33,7 @@
             Gratis gennemgang
           </p>
           <h2 class="mt-2 text-lg font-semibold text-zinc-950 dark:text-white">
-            Start med et hurtigt tjek
+            Start med en gratis gennemgang
           </h2>
           <p class="mt-3 leading-7 text-zinc-600 dark:text-zinc-400">
             Særligt relevant hvis du allerede bruger penge på Google Ads, men er i tvivl om kampagner, tracking eller landingssider arbejder godt nok sammen.
@@ -171,7 +171,7 @@ useHead({
   meta: [
     {
       name: 'description',
-      content: 'Tjenester inden for Google Ads, Google Analytics, tracking, hjemmeside, webshop, CMS, Umbraco, SEO, automatisering og digital sparring.',
+      content: 'Tjenester inden for Google Ads, Analytics, tracking, hjemmeside, performance, webshop, CMS, Umbraco, SEO, automatisering og digital sparring.',
     },
   ],
 })
@@ -189,7 +189,7 @@ const serviceSections: ServiceSection[] = [
     services: [
       {
         title: 'Google Ads - gratis gennemgang',
-        text: 'En kort indledende gennemgang af konto, kampagnestruktur, tracking og landingssider, så du får en konkret vurdering af de mest oplagte forbedringer. (kræver adgang til google-ads konto)',
+        text: 'En kort indledende gennemgang af Google Ads-konto, kampagnestruktur, tracking og landingssider, så du får en konkret vurdering af de mest oplagte forbedringer. Kræver adgang til Google Ads-kontoen.',
         badge: 'Gratis gennemgang',
         contactSubject: 'Google Ads - gratis gennemgang',
         contactText: 'Spørg om gratis gennemgang',
@@ -203,46 +203,50 @@ const serviceSections: ServiceSection[] = [
         text: 'Opsætning af nye kampagner, konverteringsmål, søgeord, annoncer og grundlæggende struktur for virksomheder, der ikke allerede annoncerer.',
       },
       {
-        title: 'Google Analytics og konverteringstracking',
-        text: 'Opsætning eller gennemgang af GA4, Google Tag Manager og konverteringstracking, så du kan se, hvilke henvendelser, køb eller handlinger hjemmesiden skaber.',
-      },
-      {
-        title: 'Tracking-fejlfinding',
-        text: 'Gennemgang af opsætningen, når køb, formularer, klik, opkald eller andre vigtige handlinger ikke bliver registreret korrekt.',
-      },
-      {
-        title: 'Samtykke og annoncetracking',
-        text: 'Teknisk gennemgang af om cookie-banner, samtykke, tags og konverteringer spiller rigtigt sammen, så målingen bliver så brugbar som muligt.',
+        title: 'Analytics og tracking',
+        text: 'Hjælp til GA4, Google Tag Manager, konverteringssporing, Google Ads-tracking og fejlfinding, så du kan vurdere, om de rigtige handlinger bliver registreret, og om data er til at stole på. Det kan også omfatte samspillet mellem cookie-samtykke og tracking.',
       },
     ],
   },
   {
     id: 'website',
     label: 'Hjemmeside',
-    title: 'Hjemmeside, webshop og landingssider',
+    title: 'Hjemmeside, webshop og webudvikling',
     text: 'Praktiske forbedringer af sider, flows og tekniske detaljer, der påvirker henvendelser, salg og daglig drift.',
     services: [
       {
         title: 'Hjemmeside - gratis gennemgang',
-        text: 'En kort indledende gennemgang af hjemmeside, hastigheds-tjek, accessibility, næste handling, tekniske problemer og de mest oplagte forbedringer for flere henvendelser eller salg.',
+        text: 'En kort indledende gennemgang af hjemmeside, hastighedstjek, tilgængelighed, næste handling, tekniske problemer og de mest oplagte forbedringer for flere henvendelser eller salg.',
         badge: 'Gratis gennemgang',
         contactSubject: 'Hjemmeside - gratis gennemgang',
-        contactText: 'Spørg om gratis hjemmeside-tjek',
+        contactText: 'Spørg om gratis gennemgang',
       },
       {
-        title: 'Hjemmeside- og konverteringsgennemgang',
-        text: 'En praktisk gennemgang af hvor trafikken lander, om næste handling er tydelig, og om tekniske eller indholdsmæssige ting gør det sværere at få henvendelser eller salg.',
+        title: 'Hjemmeside- og konverteringsoptimering',
+        text: 'En betalt fortsættelse, hvor vi går dybere end den gratis gennemgang og arbejder videre med konkrete forbedringer af CTA’er, formularer, navigation, informationshierarki, mobiloplevelse, friktion, tekniske problemer og relevante sider eller flows.',
+      },
+      {
+        title: 'Performance og hastighedsoptimering',
+        text: 'Analyse og forbedring af langsomme hjemmesider med fokus på hurtigere indlæsning og bedre brugeroplevelse. Det kan handle om frontend-performance, JavaScript, CSS, billeder, fonts, lazy loading, caching, rendering, Core Web Vitals og andre tekniske flaskehalse.',
+      },
+      {
+        title: 'Formularer og lead-flows',
+        text: 'Hjælp når kontaktformularer, tilbudsformularer, leadformularer eller bookingflows ikke fungerer godt nok. Jeg kan se på validering, fejl, brugeroplevelse, bekræftelsessider, mails, tracking og forbindelse til CRM eller andre systemer.',
+      },
+      {
+        title: 'Website-migrering og relancering',
+        text: 'Hjælp når en hjemmeside skal lanceres, flyttes eller skifte platform, og du vil undgå, at noget vigtigt går i stykker. Det kan omfatte redirects, URL-struktur, tracking, Analytics, Google Tag Manager, SEO-forhold, domæne, DNS, formularer, CMS, integrationer og teknisk kvalitetssikring før og efter lancering.',
       },
       {
         title: 'Landingssider til kampagner',
         text: 'Opsætning eller forbedring af landingssider, der passer til annoncer, målgrupper og den handling, brugeren helst skal tage.',
       },
       {
-        title: 'Webshop – gratis checkout-tjek',
+        title: 'Webshop - gratis checkout-gennemgang',
         text: 'Jeg gennemfører kort købsflowet som kunde og peger på de mest oplagte steder, hvor friktion eller tekniske problemer kan stå i vejen for et køb.',
         badge: 'Gratis gennemgang',
-        contactSubject: 'Webshop – gratis checkout-tjek',
-        contactText: 'Spørg om gratis checkout-tjek',
+        contactSubject: 'Webshop - gratis checkout-gennemgang',
+        contactText: 'Spørg om gratis gennemgang',
       },
       {
         title: 'Webshop- og checkoutgennemgang',
@@ -250,7 +254,7 @@ const serviceSections: ServiceSection[] = [
       },
       {
         title: 'Teknisk webhjælp og mindre ændringer',
-        text: 'Små rettelser, formularer, integrationer, tracking-scripts, DNS, domæneopsætning og andre opgaver mellem marketing og webudvikling.',
+        text: 'Små rettelser, tekniske fejl, tracking-scripts, DNS, domæneopsætning og andre opgaver mellem marketing og webudvikling.',
       },
     ],
   },
@@ -265,16 +269,8 @@ const serviceSections: ServiceSection[] = [
         text: 'Jeg har særlig erfaring med Umbraco og kan hjælpe med struktur, komponenter, skabeloner, redaktøroplevelse og mindre tekniske forbedringer.',
       },
       {
-        title: 'CMS og redaktørvenlige sider',
-        text: 'Hjælp til CMS-løsninger generelt, hvor indholdstyper, felter og sider skal give mening for dem, der arbejder med indholdet til daglig.',
-      },
-      {
-        title: 'Indholdsstruktur og komponenter',
-        text: 'Gennemgang eller opsætning af fleksible sidetyper, moduler og komponenter, så nye sider kan bygges uden unødigt manuelt arbejde.',
-      },
-      {
-        title: 'CMS-fejlfinding og oprydning',
-        text: 'Hjælp til små fejl, uhensigtsmæssige arbejdsgange, teknisk gæld eller sider, der er blevet svære at vedligeholde over tid.',
+        title: 'CMS, komponenter og redaktøroplevelse',
+        text: 'Forbedring af eksisterende CMS-løsninger, så indhold bliver nemmere at oprette og vedligeholde. Det kan omfatte indholdsstruktur, komponenter, felter, datamodeller, oprydning, mindre CMS-fejl og mere fleksible arbejdsgange for redaktører.',
       },
     ],
   },
@@ -289,23 +285,15 @@ const serviceSections: ServiceSection[] = [
         text: 'En kort indledende gennemgang af teknisk SEO, sidearkitektur, metadata, indeksering og de mest oplagte forbedringer, så du får et konkret sted at starte.',
         badge: 'Gratis gennemgang',
         contactSubject: 'SEO - gratis gennemgang',
-        contactText: 'Spørg om gratis SEO-gennemgang',
+        contactText: 'Spørg om gratis gennemgang',
       },
       {
-        title: 'Strukturerede data',
-        text: 'Opsætning eller gennemgang af relevante strukturerede data, så søgemaskiner bedre kan forstå indhold, produkter, brødkrummer, artikler eller ofte stillede spørgsmål.',
+        title: 'Teknisk SEO',
+        text: 'Hjælp til indeksering, crawl-problemer, metadata, canonical, redirects, structured data, tekniske fejl, performance i relation til SEO og andre tekniske forhold, der kan påvirke synligheden.',
       },
       {
-        title: 'Sidearkitektur og interne links',
-        text: 'Gennemgang af navigation, landingssider, URL-struktur og interne links, så vigtige sider bliver nemmere at finde og forstå.',
-      },
-      {
-        title: 'Teknisk SEO-gennemgang',
-        text: 'Praktisk gennemgang af indeksering, metadata, redirects, hastighed, mobilvisning og tekniske forhold, der kan påvirke synligheden.',
-      },
-      {
-        title: 'Indholds- og landingssideprioritering',
-        text: 'En prioriteret vurdering af hvilke sider der bør forbedres, samles, udvides eller oprettes først.',
+        title: 'SEO-struktur og indholdsprioritering',
+        text: 'Gennemgang af sidearkitektur, interne links, URL-struktur og sammenhængen mellem sider, så det bliver tydeligere, hvilke eksisterende sider der bør forbedres først, og hvor der mangler landingssider eller indhold.',
       },
     ],
   },
@@ -321,7 +309,7 @@ const serviceSections: ServiceSection[] = [
       },
       {
         title: 'Integrationer og dataopsamling',
-        text: 'Hjælp til at forbinde formularer, regneark, APIer, mailsystemer og andre værktøjer, så data lander det rigtige sted.',
+        text: "Hjælp til at forbinde formularer, regneark, API'er, mailsystemer og andre værktøjer, så data lander det rigtige sted.",
       },
       {
         title: 'Digital gennemgang og ekstra vurdering',
@@ -339,7 +327,7 @@ const steps = [
   },
   {
     label: '02',
-    title: 'Forundersøgelse',
+    title: 'Hurtig afklaring',
     text: 'Når det giver mening, starter vi med et hurtigt tjek af problem, konto, tracking eller hjemmeside.',
   },
   {
