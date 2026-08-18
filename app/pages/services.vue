@@ -269,6 +269,13 @@ const serviceSections: ServiceSection[] = [
     text: 'Hjælp til de tekniske og strukturelle dele af SEO, hvor udvikling, indhold og brugeroplevelse mødes.',
     services: [
       {
+        title: 'SEO - gratis gennemgang',
+        text: 'En kort indledende gennemgang af teknisk SEO, sidearkitektur, metadata, indeksering og de mest oplagte forbedringer, så du får et konkret sted at starte.',
+        badge: 'Gratis gennemgang',
+        contactSubject: 'SEO - gratis gennemgang',
+        contactText: 'Spørg om gratis SEO-gennemgang',
+      },
+      {
         title: 'Strukturerede data',
         text: 'Opsætning eller gennemgang af relevante strukturerede data, så søgemaskiner bedre kan forstå indhold, produkter, brødkrummer, artikler eller ofte stillede spørgsmål.',
       },
