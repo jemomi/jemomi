@@ -236,6 +236,13 @@ const serviceSections: ServiceSection[] = [
         text: 'Opsætning eller forbedring af landingssider, der passer til annoncer, målgrupper og den handling, brugeren helst skal tage.',
       },
       {
+        title: 'Webshop – gratis checkout-tjek',
+        text: 'Jeg gennemfører kort købsflowet som kunde og peger på de mest oplagte steder, hvor friktion eller tekniske problemer kan stå i vejen for et køb.',
+        badge: 'Gratis forundersøgelse',
+        contactSubject: 'Webshop – gratis checkout-tjek',
+        contactText: 'Spørg om gratis checkout-tjek',
+      },
+      {
         title: 'Webshop- og checkoutgennemgang',
         text: 'Gennemgang af produktsider, kurv, checkout, formularer og vigtige målepunkter, så det bliver lettere at finde friktion og tabte salg.',
       },
