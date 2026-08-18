@@ -221,6 +221,13 @@ const serviceSections: ServiceSection[] = [
     text: 'Praktiske forbedringer af sider, flows og tekniske detaljer, der påvirker henvendelser, salg og daglig drift.',
     services: [
       {
+        title: 'Hjemmeside - gratis forundersøgelse',
+        text: 'En kort indledende gennemgang af hjemmeside, landingssider, næste handling, tekniske problemer og de mest oplagte forbedringer for flere henvendelser eller salg.',
+        badge: 'Gratis forundersøgelse',
+        contactSubject: 'Hjemmeside - gratis forundersøgelse',
+        contactText: 'Spørg om gratis hjemmeside-tjek',
+      },
+      {
         title: 'Hjemmeside- og konverteringsgennemgang',
         text: 'En praktisk gennemgang af hvor trafikken lander, om næste handling er tydelig, og om tekniske eller indholdsmæssige ting gør det sværere at få henvendelser eller salg.',
       },
