@@ -14,10 +14,10 @@
           </p>
           <div class="flex flex-col gap-3 sm:flex-row">
             <NuxtLink
-              :to="contactHref('Gratis forundersøgelse')"
+              :to="contactHref('Gratis gennemgang')"
               class="inline-flex items-center justify-center rounded-md bg-zinc-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
             >
-              Spørg om gratis forundersøgelse
+              Spørg om gratis gennemgang
             </NuxtLink>
             <NuxtLink
               to="#tjenester"
@@ -30,7 +30,7 @@
 
         <aside class="rounded-lg border border-emerald-200 bg-white p-6 shadow-sm dark:border-emerald-900/70 dark:bg-zinc-950">
           <p class="text-sm font-semibold uppercase tracking-normal text-emerald-700 dark:text-emerald-400">
-            Gratis forundersøgelse
+            Gratis gennemgang
           </p>
           <h2 class="mt-2 text-lg font-semibold text-zinc-950 dark:text-white">
             Start med et hurtigt tjek
@@ -39,7 +39,7 @@
             Særligt relevant hvis du allerede bruger penge på Google Ads, men er i tvivl om kampagner, tracking eller landingssider arbejder godt nok sammen.
           </p>
           <NuxtLink
-            :to="contactHref('Gratis forundersøgelse')"
+            :to="contactHref('Gratis gennemgang')"
             class="mt-5 inline-flex w-full items-center justify-center rounded-md bg-emerald-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
           >
             Kontakt mig
@@ -188,11 +188,11 @@ const serviceSections: ServiceSection[] = [
     text: 'Hjælp til at få bedre overblik over annoncebudget, konverteringer og den værdi, din hjemmeside skaber.',
     services: [
       {
-        title: 'Google Ads - gratis forundersøgelse',
+        title: 'Google Ads - gratis gennemgang',
         text: 'En kort indledende gennemgang af konto, kampagnestruktur, tracking og landingssider, så du får en konkret vurdering af de mest oplagte forbedringer. (kræver adgang til google-ads konto)',
-        badge: 'Gratis forundersøgelse',
-        contactSubject: 'Google Ads - gratis forundersøgelse',
-        contactText: 'Spørg om gratis forundersøgelse',
+        badge: 'Gratis gennemgang',
+        contactSubject: 'Google Ads - gratis gennemgang',
+        contactText: 'Spørg om gratis gennemgang',
       },
       {
         title: 'Google Ads - gennemgang og optimering',
@@ -223,10 +223,10 @@ const serviceSections: ServiceSection[] = [
     text: 'Praktiske forbedringer af sider, flows og tekniske detaljer, der påvirker henvendelser, salg og daglig drift.',
     services: [
       {
-        title: 'Hjemmeside - gratis forundersøgelse',
+        title: 'Hjemmeside - gratis gennemgang',
         text: 'En kort indledende gennemgang af hjemmeside, hastigheds-tjek, accessibility, næste handling, tekniske problemer og de mest oplagte forbedringer for flere henvendelser eller salg.',
-        badge: 'Gratis forundersøgelse',
-        contactSubject: 'Hjemmeside - gratis forundersøgelse',
+        badge: 'Gratis gennemgang',
+        contactSubject: 'Hjemmeside - gratis gennemgang',
         contactText: 'Spørg om gratis hjemmeside-tjek',
       },
       {
@@ -240,7 +240,7 @@ const serviceSections: ServiceSection[] = [
       {
         title: 'Webshop – gratis checkout-tjek',
         text: 'Jeg gennemfører kort købsflowet som kunde og peger på de mest oplagte steder, hvor friktion eller tekniske problemer kan stå i vejen for et køb.',
-        badge: 'Gratis forundersøgelse',
+        badge: 'Gratis gennemgang',
         contactSubject: 'Webshop – gratis checkout-tjek',
         contactText: 'Spørg om gratis checkout-tjek',
       },
