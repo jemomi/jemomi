@@ -1,8 +1,22 @@
 <template>
-  <article class="grid row-span-4 grid-rows-subgrid rounded-lg border border-zinc-200 bg-zinc-50 p-6 dark:border-zinc-800 dark:bg-zinc-900">
+  <article
+    class="grid row-span-4 grid-rows-subgrid rounded-lg border p-6"
+    :class="isFreeReview
+      ? 'border-emerald-300 bg-emerald-50 dark:border-emerald-900/70 dark:bg-emerald-400/10'
+      : 'border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900'"
+  >
     <p :aria-hidden="!service.badge">
+      <NuxtLink
+        v-if="service.badge && isFreeReview"
+        to="#free-review"
+        class="mb-3 inline-flex rounded-md bg-emerald-600 px-2.5 py-1 text-xs font-semibold text-white underline-offset-2 hover:underline dark:bg-emerald-400 dark:text-zinc-950"
+        :aria-label="`${service.badge}. Læs hvad den gratis gennemgang indebærer`"
+        title="Læs hvad den gratis gennemgang indebærer"
+      >
+        {{ service.badge }}*
+      </NuxtLink>
       <span
-        v-if="service.badge"
+        v-else-if="service.badge"
         class="mb-3 rounded-md bg-emerald-100 px-2.5 py-1 text-xs font-semibold text-emerald-800 dark:bg-emerald-400/10 dark:text-emerald-300"
       >
         {{ service.badge }}
@@ -30,6 +44,8 @@ const props = defineProps<{
   contactEmail: string
   service: Service
 }>()
+
+const isFreeReview = computed(() => props.service.badge?.toLowerCase().includes('gratis') ?? false)
 
 const contactHref = computed(() => {
   const subject = props.service.contactSubject ?? props.service.title
