@@ -108,6 +108,10 @@ export const getComponentGroupSections = (groups: StatusLineGroup<ComponentStatu
   })
 }
 
+export const getComponentGroupSectionStatus = (section: ComponentGroupSection) => {
+  return getMostUrgentStatus(section.groups.map((group) => getComponentStatus(group.statusLine)))
+}
+
 export const getIncidentDayGroups = (groups: StatusLineGroup<IncidentStatusLine>[]) => {
   const days = new Map<string, IncidentDayGroup>()
 
@@ -202,6 +206,57 @@ export const getStatusClass = (status: string) => {
       return 'bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-300'
     default:
       return 'bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300'
+  }
+}
+
+export const getStatusBorderClass = (status: string) => {
+  switch (status) {
+    case 'operational':
+    case 'completed':
+    case 'resolved':
+      return 'border-l-green-500 dark:border-l-green-500 border-t-green-500 dark:border-t-green-500'
+    case 'scheduled':
+    case 'in_progress':
+    case 'under_maintenance':
+    case 'monitoring':
+    case 'verifying':
+      return 'border-l-amber-500 dark:border-l-amber-500 border-t-amber-500 dark:border-t-amber-500'
+    case 'major_outage':
+    case 'partial_outage':
+    case 'degraded_performance':
+    case 'investigating':
+      return 'border-l-red-500 dark:border-l-red-500 border-t-red-500 dark:border-t-red-500'
+    default:
+      return 'border-l-zinc-400 dark:border-l-zinc-400 border-t-zinc-400 dark:border-t-zinc-400'
+  }
+}
+
+const getMostUrgentStatus = (statuses: string[]) => {
+  return statuses.reduce((mostUrgentStatus, status) => {
+    return getStatusSeverity(status) > getStatusSeverity(mostUrgentStatus)
+      ? status
+      : mostUrgentStatus
+  }, 'operational')
+}
+
+const getStatusSeverity = (status: string) => {
+  switch (status) {
+    case 'major_outage':
+      return 5
+    case 'partial_outage':
+      return 4
+    case 'degraded_performance':
+    case 'investigating':
+      return 3
+    case 'under_maintenance':
+    case 'in_progress':
+      return 2
+    case 'scheduled':
+    case 'monitoring':
+    case 'verifying':
+      return 1
+    default:
+      return 0
   }
 }
 
