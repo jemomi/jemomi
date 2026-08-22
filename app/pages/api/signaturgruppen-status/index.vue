@@ -54,9 +54,10 @@
       class="space-y-3"
     >
       <SignaturgruppenStatusLineCard
-        v-for="statusLine in data"
-        :key="`status-${statusLine.id}`"
-        :status-line="statusLine"
+        v-for="statusLineGroup in statusLineGroups"
+        :key="statusLineGroup.key"
+        :status-line="statusLineGroup.statusLine"
+        :group-size="statusLineGroup.groupSize"
       />
     </div>
 
@@ -65,14 +66,49 @@
 </template>
 
 <script setup lang="ts">
-import type { Status } from '#shared/types/signaturGruppen';
+import type { PublicStatus } from '#shared/types/signaturGruppen';
 
-const {data, error, pending} = await useFetch<Status[]>('/api/signaturgruppen/status');
+const {data, error, pending} = await useFetch<PublicStatus[]>('/api/signaturgruppen/status');
 const {loggedIn} = useUserSession()
 
 const isSendingFixtureTest = ref(false)
 const fixtureTestMessage = ref('')
 const fixtureTestUrl = ref('')
+
+const statusLineGroups = computed(() => {
+  const groups = new Map<string, { key: string; statusLine: PublicStatus; groupSize: number }>()
+
+  for (const statusLine of data.value ?? []) {
+    const key = getStatusLineGroupKey(statusLine)
+    const existingGroup = groups.get(key)
+
+    if (existingGroup) {
+      existingGroup.groupSize += 1
+      continue
+    }
+
+    groups.set(key, {
+      key,
+      statusLine,
+      groupSize: 1,
+    })
+  }
+
+  return [...groups.values()]
+})
+
+const getStatusLineGroupKey = (statusLine: PublicStatus) => {
+  if ('incident' in statusLine.payload) {
+    return `incident-${statusLine.payload.page.id}-${statusLine.payload.incident.id}`
+  }
+
+  const componentId = statusLine.payload.component.id
+    ?? statusLine.payload.component_update.component_id
+
+  return componentId
+    ? `component-${statusLine.payload.page.id}-${componentId}`
+    : `status-${statusLine.id}`
+}
 
 const sendFixtureTest = async () => {
   if (isSendingFixtureTest.value) {

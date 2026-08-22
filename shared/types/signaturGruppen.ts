@@ -94,3 +94,19 @@ export interface Status {
     payload: SignaturPayload;
     headers: Record<string, string | undefined>;
 }
+
+export type PublicSignaturMeta = Omit<SignaturMeta, 'unsubscribe'>;
+
+export type PublicSignaturIncidentPayload = Omit<SignaturIncidentPayload, 'meta'> & {
+    meta: PublicSignaturMeta;
+};
+
+export type PublicSignaturComponentUpdatePayload = Omit<SignaturComponentUpdatePayload, 'meta'> & {
+    meta: PublicSignaturMeta;
+};
+
+export type PublicSignaturPayload = PublicSignaturIncidentPayload | PublicSignaturComponentUpdatePayload;
+
+export type PublicStatus = Omit<Status, 'payload' | 'headers'> & {
+    payload: PublicSignaturPayload;
+};

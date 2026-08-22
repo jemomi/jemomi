@@ -51,18 +51,12 @@
       </NuxtLink>
     </div>
 
-    <div class="grid gap-6 lg:grid-cols-2">
+    <div>
       <div>
         <h2 class="mb-2 font-medium">
           Payload
         </h2>
         <pre class="overflow-x-auto rounded-xl border border-zinc-800 bg-zinc-950 p-4 text-xs text-white">{{ data.payload }}</pre>
-      </div>
-      <div>
-        <h2 class="mb-2 font-medium">
-          Headers
-        </h2>
-        <pre class="overflow-x-auto rounded-xl border border-zinc-800 bg-zinc-950 p-4 text-xs text-white">{{ data.headers }}</pre>
       </div>
     </div>
   </div>
@@ -80,19 +74,19 @@
 </template>
 
 <script setup lang="ts">
-import type { Status } from '#shared/types/signaturGruppen';
+import type { PublicStatus } from '#shared/types/signaturGruppen';
 
 const route = useRoute()
 const pageId = String(route.params.id)
 
-const {data, error} = await useFetch<Status>(`/api/signaturgruppen/status/${pageId}`);
+const {data, error} = await useFetch<PublicStatus>(`/api/signaturgruppen/status/${pageId}`);
 const {loggedIn} = useUserSession()
 
 const isSendingEventTest = ref(false)
 const eventTestMessage = ref('')
 const eventTestUrl = ref('')
 
-const getEventTitle = (statusLine: Status) => {
+const getEventTitle = (statusLine: PublicStatus) => {
   if ('incident' in statusLine.payload) {
     return statusLine.payload.incident.name
   }

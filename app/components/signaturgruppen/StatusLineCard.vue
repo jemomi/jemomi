@@ -14,6 +14,12 @@
         <p class="text-sm text-blue-900/70 dark:text-zinc-300">
           {{ eventTitle }}
         </p>
+        <p
+          v-if="groupSize > 1"
+          class="text-xs text-blue-900/60 dark:text-zinc-500"
+        >
+          {{ groupSize }} statusopdateringer samlet
+        </p>
       </div>
       <div class="text-sm text-blue-900 dark:">
         {{ eventStatus }}
@@ -23,11 +29,14 @@
 </template>
 
 <script setup lang="ts">
-import type { Status } from '#shared/types/signaturGruppen';
+import type { PublicStatus } from '#shared/types/signaturGruppen';
 
 const props = defineProps<{
-  statusLine: Status;
+  statusLine: PublicStatus;
+  groupSize?: number;
 }>()
+
+const groupSize = computed(() => props.groupSize ?? 1)
 
 const formatDate = (value: Date | string) => {
   return new Date(value).toLocaleString()

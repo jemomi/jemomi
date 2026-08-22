@@ -1,8 +1,9 @@
 import { neon } from '@neondatabase/serverless';
-import type {Status} from '#shared/types/signaturGruppen';
+import type {PublicStatus, Status} from '#shared/types/signaturGruppen';
 import {getDatabaseUrl} from '#server/utils/database';
+import {toPublicStatus} from '#server/utils/signaturgruppen/publicStatus';
 
-export default defineCachedEventHandler<Promise<Status>>(async (event) => {
+export default defineCachedEventHandler<Promise<PublicStatus>>(async (event) => {
     const requestedId = getRouterParam(event, 'id');
     if (!requestedId) {
         throw createError({
@@ -37,7 +38,7 @@ export default defineCachedEventHandler<Promise<Status>>(async (event) => {
         })
     }
 
-    return row
+    return toPublicStatus(row)
 }, {
     maxAge: 60 * 60 * 24, // 1 day cache
     swr: true
