@@ -23,7 +23,10 @@
         </p>
       </div>
 
-      <SignaturgruppenStatusBadge :status="status" />
+      <div class="flex flex-col items-start gap-3 md:items-end">
+        <SignaturgruppenStatusBadge :status="status" />
+        <slot name="actions" />
+      </div>
     </div>
   </section>
 </template>

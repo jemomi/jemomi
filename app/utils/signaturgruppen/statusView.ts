@@ -73,6 +73,10 @@ export const getCurrentIncidentGroups = (groups: StatusLineGroup<IncidentStatusL
   return groups.filter((group) => isIncidentStatusActive(getIncidentStatus(group.statusLine)))
 }
 
+export const isTestIncidentGroup = (group: StatusLineGroup<IncidentStatusLine>) => {
+  return group.updates.some(isTestIncidentStatusLine)
+}
+
 export const getCurrentComponentGroups = (groups: StatusLineGroup<ComponentStatusLine>[]) => {
   return groups.filter((group) => isComponentStatusActive(getComponentStatus(group.statusLine)))
 }
@@ -201,6 +205,17 @@ export const getComponentTransition = (statusLine: ComponentStatusLine) => {
 
 export const isIncidentStatusActive = (status: string) => {
   return !['completed', 'resolved'].includes(status)
+}
+
+export const isTestIncidentStatusLine = (statusLine: IncidentStatusLine) => {
+  const incident = statusLine.payload.incident
+
+  return statusLine.event_type === 'verification_test'
+    || statusLine.payload.meta.event_type === 'verification_test'
+    || statusLine.payload.page.id === 'test-page'
+    || incident.id.startsWith('test-')
+    || incident.status === 'testing'
+    || incident.impact === 'testing'
 }
 
 export const isComponentStatusActive = (status: string) => {

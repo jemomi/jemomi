@@ -20,10 +20,12 @@ export default defineCachedEventHandler(async (): Promise<PublicStatus[]> => {
     getKey: async () => {
         const sql = neon(getDatabaseUrl());
         const result = await sql`
-            select coalesce(max(id), 0)::int as latest_id
+            select
+                coalesce(max(id), 0)::int as latest_id,
+                count(*)::int as record_count
             from public.signatur_events
-        ` as { latest_id: number }[];
+        ` as { latest_id: number; record_count: number }[];
 
-        return `signatur-events:${result[0]?.latest_id ?? 0}`;
+        return `signatur-events:${result[0]?.latest_id ?? 0}:${result[0]?.record_count ?? 0}`;
     },
 })

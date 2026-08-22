@@ -8,7 +8,15 @@
       :title="detailTitle"
       :status="detailStatus"
       :label="detailLabel"
-    />
+    >
+      <template #actions>
+        <SignaturgruppenStatusDeleteTestIncidentPanel
+          v-if="loggedIn && selectedIncidentGroup && selectedIncidentGroupIsTest"
+          :group="selectedIncidentGroup"
+          @deleted="handleDeleted"
+        />
+      </template>
+    </SignaturgruppenStatusDetailHero>
 
     <SignaturgruppenStatusIncidentDetail
       v-if="selectedIncidentGroup"
@@ -72,12 +80,14 @@ import {
   getIncidentStatus,
   isComponentStatusLine,
   isIncidentStatusLine,
+  isTestIncidentGroup,
 } from '~/utils/signaturgruppen/statusView';
 
 const route = useRoute()
 const pageId = String(route.params.id)
 
 const {data, error, pending} = await useFetch<PublicStatus[]>('/api/signaturgruppen/status');
+const {loggedIn} = useUserSession()
 
 const statusLines = computed(() => data.value ?? [])
 
@@ -123,6 +133,10 @@ const relatedIncidentGroups = computed(() => {
   )
 })
 
+const selectedIncidentGroupIsTest = computed(() => {
+  return selectedIncidentGroup.value ? isTestIncidentGroup(selectedIncidentGroup.value) : false
+})
+
 const detailTitle = computed(() => {
   if (selectedIncidentGroup.value) {
     return selectedIncidentGroup.value.statusLine.payload.incident.name
@@ -150,4 +164,9 @@ const detailStatus = computed(() => {
 const detailLabel = computed(() => {
   return selectedComponentGroup.value ? 'Komponent' : 'Hændelsesforløb'
 })
+
+const handleDeleted = async () => {
+  await refreshNuxtData()
+  await navigateTo('/api/signaturgruppen-status')
+}
 </script>
