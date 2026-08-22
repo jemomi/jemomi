@@ -26,7 +26,7 @@
 
       <SignaturgruppenStatusComponentSections :sections="componentSections" />
 
-      <SignaturgruppenStatusIncidentHistory :day-groups="incidentDayGroups" />
+<!--      <SignaturgruppenStatusIncidentHistory :day-groups="incidentDayGroups" />-->
 
       <SignaturgruppenStatusRecentComponentChanges :status-lines="recentComponentChanges" />
     </template>
@@ -62,7 +62,7 @@ const currentComponentGroups = computed(() => getCurrentComponentGroups(componen
 
 const componentSections = computed(() => getComponentGroupSections(componentGroups.value))
 
-const incidentDayGroups = computed(() => getIncidentDayGroups(incidentGroups.value))
+/*const incidentDayGroups = computed(() => getIncidentDayGroups(incidentGroups.value))*/
 
 const recentComponentChanges = computed(() => getRecentComponentChanges(statusLines.value))
 </script>
