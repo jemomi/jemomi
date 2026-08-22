@@ -112,6 +112,39 @@ export const getComponentGroupSectionStatus = (section: ComponentGroupSection) =
   return getMostUrgentStatus(section.groups.map((group) => getComponentStatus(group.statusLine)))
 }
 
+export const getIncidentGroupForStatusLine = (
+  groups: StatusLineGroup<IncidentStatusLine>[],
+  statusLine: IncidentStatusLine,
+) => {
+  const key = getIncidentGroupKey(statusLine)
+  return groups.find((group) => group.key === key) ?? createStatusLineGroup(key, statusLine)
+}
+
+export const getComponentGroupForStatusLine = (
+  groups: StatusLineGroup<ComponentStatusLine>[],
+  statusLine: ComponentStatusLine,
+) => {
+  const key = getComponentGroupKey(statusLine)
+  return groups.find((group) => group.key === key) ?? createStatusLineGroup(key, statusLine)
+}
+
+export const getIncidentGroupsForComponent = (
+  groups: StatusLineGroup<IncidentStatusLine>[],
+  componentId: string,
+) => {
+  return groups.filter((group) => {
+    return group.updates.some((statusLine) => {
+      const incident = statusLine.payload.incident
+      const componentMatch = incident.components?.some((component) => component.id === componentId) ?? false
+      const affectedComponentMatch = incident.incident_updates?.some((update) => {
+        return update.affected_components?.some((component) => component.code === componentId) ?? false
+      }) ?? false
+
+      return componentMatch || affectedComponentMatch
+    })
+  })
+}
+
 export const getIncidentDayGroups = (groups: StatusLineGroup<IncidentStatusLine>[]) => {
   const days = new Map<string, IncidentDayGroup>()
 
@@ -152,6 +185,11 @@ export const getComponentStatus = (statusLine: ComponentStatusLine) => {
 
 export const getComponentName = (statusLine: ComponentStatusLine) => {
   return statusLine.payload.component.name ?? 'Ukendt komponent'
+}
+
+export const getComponentGroupLabel = (statusLine: ComponentStatusLine) => {
+  const key = statusLine.payload.component.group_id ?? UNGROUPED_COMPONENT_KEY
+  return COMPONENT_GROUP_LABELS[key] ?? 'Øvrige komponenter'
 }
 
 export const getComponentTransition = (statusLine: ComponentStatusLine) => {
@@ -277,14 +315,23 @@ const groupStatusLines = <T extends PublicStatus>(
     }
 
     groups.set(key, {
-      key,
-      statusLine,
-      groupSize: 1,
-      updates: [statusLine],
+      ...createStatusLineGroup(key, statusLine),
     })
   }
 
   return [...groups.values()]
+}
+
+const createStatusLineGroup = <T extends PublicStatus>(
+  key: string,
+  statusLine: T,
+): StatusLineGroup<T> => {
+  return {
+    key,
+    statusLine,
+    groupSize: 1,
+    updates: [statusLine],
+  }
 }
 
 const getIncidentGroupKey = (statusLine: IncidentStatusLine) => {
